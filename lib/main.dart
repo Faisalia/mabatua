@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'SaveKost',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          primaryColor: Color(0xFF00D1FF),
+          scaffoldBackgroundColor: Colors.white),
       home: MyHomePage(),
     );
   }
