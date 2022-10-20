@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatelessWidget {
+class StartingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +26,7 @@ class MyHomePage extends StatelessWidget {
                     color: Theme.of(context).primaryColor),
               ),
             ),
+            // BUTTON MASUK DAN REGISTER
             Container(
               margin: EdgeInsets.only(bottom: 50, right: 20, left: 20),
               child: Column(
