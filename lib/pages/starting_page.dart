@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import './login_page.dart';
-import './register_page.dart';
 
 class StartingPage extends StatelessWidget {
   @override
@@ -11,7 +9,7 @@ class StartingPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.only(top: 100),
+              margin: EdgeInsets.only(top: 80),
               height: 150,
               width: 150,
               child: Image.asset('assets/images/icon_savekost.png'),
@@ -44,9 +42,7 @@ class StartingPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(LoginPage.routeName);
-                      },
+                      onPressed: () {},
                       child: Text(
                         "MASUK",
                         style: TextStyle(
@@ -65,9 +61,7 @@ class StartingPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(RegisterPage.routeName);
-                      },
+                      onPressed: () {},
                       child: Text(
                         "DAFTAR",
                         style: TextStyle(
