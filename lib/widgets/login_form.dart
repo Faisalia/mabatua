@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../pages/register_page.dart';
+import '../pages/home_page.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -106,7 +107,9 @@ class _LoginFormState extends State<LoginForm> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(HomePage.routeName);
+                  },
                   child: Text('MASUK'),
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(
