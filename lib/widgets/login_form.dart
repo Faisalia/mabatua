@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../pages/register_page.dart';
-import '../pages/home_page.dart';
+import '../pages/main_page.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -108,7 +108,7 @@ class _LoginFormState extends State<LoginForm> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed(HomePage.routeName);
+                    Navigator.of(context).pushNamed(MainPage.routeName);
                   },
                   child: Text('MASUK'),
                   style: ButtonStyle(
