@@ -15,6 +15,10 @@ class MyApp extends StatelessWidget {
       title: 'SaveKost',
       theme: ThemeData(
         primaryColor: Color(0xFF00D1FF),
+        primaryColorDark: Color(0xFF0CAACD),
+        iconTheme: IconThemeData(
+          color: Color(0xFF00D1FF),
+        ),
         scaffoldBackgroundColor: Colors.white,
         textTheme: Theme.of(context).textTheme.apply(
               bodyColor: Color(0xFF00D1FF),
