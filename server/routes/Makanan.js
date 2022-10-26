@@ -37,6 +37,23 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/rekomendasi", async (req, res) => {
+  try {
+    const budget = parseInt(req.query.budget);
+    const hari = parseInt(req.query.hari);
+
+    const rekomendasiPengeluaranPerMakanan = parseInt(budget / (3 * hari));
+
+    const rekomendasiMakanan = (await makananModel.find()).filter(
+      (makanan) => makanan.harga <= rekomendasiPengeluaranPerMakanan
+    );
+
+    res.send({ rekomendasiPengeluaranPerMakanan, rekomendasiMakanan });
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const result = await makananModel.findById(req.params.id);
