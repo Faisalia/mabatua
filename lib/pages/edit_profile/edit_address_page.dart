@@ -21,7 +21,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
         child: Column(
           children: [
             EditTitle(
-              title: 'Ubah Nama',
+              title: 'Ubah Alamat',
             ),
             Container(
               padding: EdgeInsets.only(top: 20, left: 15, right: 15),
@@ -37,20 +37,25 @@ class _EditAddressPageState extends State<EditAddressPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Nama Depan',
-                      style: TextStyle(color: Theme.of(context).primaryColor),
+                      'Alamat',
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor, fontSize: 16),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Container(
-                      height: 40,
+                      // height: 40,
                       child: TextFormField(
-                        controller: _firstNameController..text = 'Faisal',
+                        maxLines: 3,
+                        controller: _firstNameController
+                          ..text =
+                              'Perumahan IPB Alam Sinarsari Blok A No 30 Dramaga, Kab. Bogor, Jawa Barat 16680',
                         enableInteractiveSelection: false,
                         focusNode: FocusNode(),
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 20),
                           // hintText: 'Faisal',
                           hintStyle: TextStyle(
                             color: Theme.of(context).primaryColor,
@@ -62,50 +67,12 @@ class _EditAddressPageState extends State<EditAddressPage> {
                             borderSide: BorderSide(
                                 color: Theme.of(context).primaryColor,
                                 width: 2),
-                            borderRadius: BorderRadius.circular(50),
+                            borderRadius: BorderRadius.circular(30),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Theme.of(context).primaryColor),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Text(
-                      'Nama Belakang',
-                      style: TextStyle(color: Theme.of(context).primaryColor),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      height: 40,
-                      child: TextFormField(
-                        controller: _lastNameController..text = 'Keren',
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                          border: OutlineInputBorder(),
-                          // hintText: 'Keren',
-                          hintStyle: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.w300,
-                            fontSize: 12,
-                          ),
-                          fillColor: Theme.of(context).primaryColor,
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Theme.of(context).primaryColor,
-                                width: 2),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Theme.of(context).primaryColor),
-                            borderRadius: BorderRadius.circular(50),
+                            borderRadius: BorderRadius.circular(30),
                           ),
                         ),
                       ),
