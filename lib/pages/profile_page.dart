@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/username_title.dart';
+import '../pages/setting_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -15,9 +16,10 @@ class ProfilePage extends StatelessWidget {
             child: UsernameTitle(),
           ),
           Container(
-            padding: EdgeInsets.only(top: 20, left: 15, right: 15),
+            padding: EdgeInsets.only(top: 20, left: 15, right: 15, bottom: 20),
             height: 600,
             decoration: BoxDecoration(
+              // color: Colors.red,
               border: Border(
                 top:
                     BorderSide(width: 3, color: Theme.of(context).primaryColor),
@@ -61,7 +63,10 @@ class ProfilePage extends StatelessWidget {
                           color: Theme.of(context).primaryColor,
                         ),
                         title: Text('Pengaturan'),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(SettingPage.routeName);
+                        },
                       ),
                       SizedBox(height: 20),
                       ListTile(

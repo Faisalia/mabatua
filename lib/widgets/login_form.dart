@@ -38,6 +38,7 @@ class _LoginFormState extends State<LoginForm> {
                 enableInteractiveSelection: false,
                 focusNode: FocusNode(),
                 decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
                   hintText: 'Masukkan username',
                   hintStyle: TextStyle(
                     color: Theme.of(context).primaryColor,
@@ -73,7 +74,7 @@ class _LoginFormState extends State<LoginForm> {
               child: TextFormField(
                 obscureText: _obscureText,
                 decoration: InputDecoration(
-                  //contentPadding: EdgeInsets.symmetric(vertical: 20.0),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
                   suffixIcon: IconButton(
                     onPressed: _togglevisibility,
                     icon: Icon(

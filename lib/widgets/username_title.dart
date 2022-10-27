@@ -12,7 +12,7 @@ class UsernameTitle extends StatelessWidget {
       child: Row(
         children: [
           Image.asset(
-            'assets/images/icon_savekost.png',
+            'assets/images/savekost_username.png',
             width: 50,
             height: 50,
           ),

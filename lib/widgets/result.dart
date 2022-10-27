@@ -17,7 +17,18 @@ class Result extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Rekomendasi pengeluaran'),
-              Text("Rp10.000 / makan")
+              RichText(
+                  text: TextSpan(
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                      children: [
+                    TextSpan(
+                      text: 'Rp10.000',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    TextSpan(
+                      text: ' / makan',
+                    ),
+                  ]))
             ],
           ),
           SizedBox(height: 10),
