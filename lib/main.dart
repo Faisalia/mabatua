@@ -7,6 +7,7 @@ import './pages/main_page.dart';
 import './pages/setting_page.dart';
 import './pages/edit_profile/edit_name_page.dart';
 import './pages/edit_profile/edit_address_page.dart';
+import './pages/edit_profile/edit_username_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         SettingPage.routeName: (context) => SettingPage(),
         EditNamePage.routeName: (context) => EditNamePage(),
         EditAddressPage.routeName: (context) => EditAddressPage(),
+        EditUsernamePage.routeName: (context) => EditUsernamePage(),
       },
     );
   }

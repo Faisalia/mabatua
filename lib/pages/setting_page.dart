@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './edit_profile/edit_name_page.dart';
 import './edit_profile/edit_address_page.dart';
+import './edit_profile/edit_username_page.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -95,7 +96,10 @@ class SettingPage extends StatelessWidget {
                         Icons.keyboard_arrow_right,
                         color: Theme.of(context).primaryColor,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushNamed(EditUsernamePage.routeName);
+                      },
                     ),
                     Divider(
                       color: Theme.of(context).primaryColor,
