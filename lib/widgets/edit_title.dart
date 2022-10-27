@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import '../pages/edit_profile/edit_new_password_page.dart';
+import '../pages/setting_page.dart';
+import '../enum.dart';
 
 class EditTitle extends StatelessWidget {
-  EditTitle({Key? key, required this.title}) : super(key: key);
+  EditTitle({Key? key, required this.title, required this.editPage})
+      : super(key: key);
   final String title;
+  final EditPage editPage;
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +20,15 @@ class EditTitle extends StatelessWidget {
         // color: Colors.red,
         child: Row(
           children: [
-            Image.asset(
-              'assets/images/back_icon.png',
-              width: 40,
-              height: 40,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: Image.asset(
+                'assets/images/back_icon.png',
+                width: 40,
+                height: 40,
+              ),
             ),
             Container(
               width: deviceWidth -
@@ -37,10 +47,25 @@ class EditTitle extends StatelessWidget {
                 ],
               ),
             ),
-            Image.asset(
-              'assets/images/done_icon.png',
-              width: 40,
-              height: 40,
+            GestureDetector(
+              onTap: () {
+                if (editPage == EditPage.name ||
+                    editPage == EditPage.address ||
+                    editPage == EditPage.username) {
+                  Navigator.of(context).pop();
+                } else if (editPage == EditPage.oldPassword) {
+                  Navigator.of(context)
+                      .pushNamed(EditNewPasswordPage.routeName);
+                } else if (editPage == EditPage.newPassword) {
+                  Navigator.of(context)
+                      .popUntil(ModalRoute.withName(SettingPage.routeName));
+                }
+              },
+              child: Image.asset(
+                'assets/images/done_icon.png',
+                width: 40,
+                height: 40,
+              ),
             ),
           ],
         ),

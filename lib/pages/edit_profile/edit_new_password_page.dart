@@ -2,17 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:local_savekost/enum.dart';
 import '../../widgets/edit_title.dart';
 
-class EditNamePage extends StatefulWidget {
-  const EditNamePage({Key? key}) : super(key: key);
-  static const routeName = '/editname';
+class EditNewPasswordPage extends StatefulWidget {
+  const EditNewPasswordPage({Key? key}) : super(key: key);
+  static const routeName = '/edit-new-password';
 
   @override
-  State<EditNamePage> createState() => _EditNamePageState();
+  State<EditNewPasswordPage> createState() => _EditNewPasswordPageState();
 }
 
-class _EditNamePageState extends State<EditNamePage> {
-  TextEditingController _firstNameController = TextEditingController();
-  TextEditingController _lastNameController = TextEditingController();
+class _EditNewPasswordPageState extends State<EditNewPasswordPage> {
+  // TextEditingController _passwordController = TextEditingController();
+  // TextEditingController _confirmPasswordController = TextEditingController();
+  bool _obscureText = true;
+  bool _obscureTextConfirm = true;
+  void _togglevisibility({bool isConfirm: false}) {
+    setState(() {
+      if (isConfirm) {
+        _obscureTextConfirm = !_obscureTextConfirm;
+      } else {
+        _obscureText = !_obscureText;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +33,8 @@ class _EditNamePageState extends State<EditNamePage> {
         child: Column(
           children: [
             EditTitle(
-              title: 'Ubah Nama',
-              editPage: EditPage.name,
+              title: 'Ubah Password',
+              editPage: EditPage.newPassword,
             ),
             Container(
               padding: EdgeInsets.only(top: 20, left: 15, right: 15),
@@ -39,7 +50,7 @@ class _EditNamePageState extends State<EditNamePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Nama Depan',
+                      'Buat Password Baru',
                       style: TextStyle(color: Theme.of(context).primaryColor),
                     ),
                     SizedBox(
@@ -48,10 +59,21 @@ class _EditNamePageState extends State<EditNamePage> {
                     Container(
                       height: 40,
                       child: TextFormField(
-                        controller: _firstNameController..text = 'Faisal',
+                        // controller: _firstNameController..text = 'Faisal',
+                        obscureText: _obscureText,
                         enableInteractiveSelection: false,
                         focusNode: FocusNode(),
                         decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: () =>
+                                _togglevisibility(isConfirm: false),
+                            icon: Icon(
+                              _obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
                           contentPadding: EdgeInsets.symmetric(horizontal: 20),
                           // hintText: 'Faisal',
                           hintStyle: TextStyle(
@@ -78,7 +100,7 @@ class _EditNamePageState extends State<EditNamePage> {
                       height: 30,
                     ),
                     Text(
-                      'Nama Belakang',
+                      'Konfirmasi Password Baru',
                       style: TextStyle(color: Theme.of(context).primaryColor),
                     ),
                     SizedBox(
@@ -87,8 +109,18 @@ class _EditNamePageState extends State<EditNamePage> {
                     Container(
                       height: 40,
                       child: TextFormField(
-                        controller: _lastNameController..text = 'Keren',
+                        // controller: _lastNameController..text = 'Keren',
+                        obscureText: _obscureTextConfirm,
                         decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: () => _togglevisibility(isConfirm: true),
+                            icon: Icon(
+                              _obscureTextConfirm
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
                           contentPadding: EdgeInsets.symmetric(horizontal: 20),
                           border: OutlineInputBorder(),
                           // hintText: 'Keren',

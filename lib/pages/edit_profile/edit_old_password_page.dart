@@ -2,16 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:local_savekost/enum.dart';
 import '../../widgets/edit_title.dart';
 
-class EditUsernamePage extends StatefulWidget {
-  const EditUsernamePage({Key? key}) : super(key: key);
-  static const routeName = '/editusername';
+class EditOldPasswordPage extends StatefulWidget {
+  const EditOldPasswordPage({Key? key}) : super(key: key);
+  static const routeName = '/edit-old-password';
 
   @override
-  State<EditUsernamePage> createState() => _EditUsernamePageState();
+  State<EditOldPasswordPage> createState() => _EditOldPasswordPageState();
 }
 
-class _EditUsernamePageState extends State<EditUsernamePage> {
-  TextEditingController _usernameController = TextEditingController();
+class _EditOldPasswordPageState extends State<EditOldPasswordPage> {
+  TextEditingController _oldPasswordController = TextEditingController();
+
+  bool _obscureText = false;
+  void _togglevisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +28,8 @@ class _EditUsernamePageState extends State<EditUsernamePage> {
         child: Column(
           children: [
             EditTitle(
-              title: 'Ubah Username',
-              editPage: EditPage.username,
+              title: 'Ubah Password',
+              editPage: EditPage.oldPassword,
             ),
             Container(
               padding: EdgeInsets.only(top: 20, left: 15, right: 15),
@@ -38,7 +45,7 @@ class _EditUsernamePageState extends State<EditUsernamePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Username',
+                      'Masukkan Password yang Lama',
                       style: TextStyle(color: Theme.of(context).primaryColor),
                     ),
                     SizedBox(
@@ -47,10 +54,20 @@ class _EditUsernamePageState extends State<EditUsernamePage> {
                     Container(
                       height: 40,
                       child: TextFormField(
-                        controller: _usernameController..text = 'username123',
+                        obscureText: _obscureText,
+                        controller: _oldPasswordController..text = '1234',
                         enableInteractiveSelection: false,
                         focusNode: FocusNode(),
                         decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: _togglevisibility,
+                            icon: Icon(
+                              _obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
                           contentPadding: EdgeInsets.symmetric(horizontal: 20),
                           // hintText: 'Faisal',
                           hintStyle: TextStyle(

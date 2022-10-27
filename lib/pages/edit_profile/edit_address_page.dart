@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../widgets/edit_title.dart';
+import '../../enum.dart';
 
 class EditAddressPage extends StatefulWidget {
   const EditAddressPage({Key? key}) : super(key: key);
@@ -10,8 +11,7 @@ class EditAddressPage extends StatefulWidget {
 }
 
 class _EditAddressPageState extends State<EditAddressPage> {
-  TextEditingController _firstNameController = TextEditingController();
-  TextEditingController _lastNameController = TextEditingController();
+  TextEditingController _addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +22,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
           children: [
             EditTitle(
               title: 'Ubah Alamat',
+              editPage: EditPage.address,
             ),
             Container(
               padding: EdgeInsets.only(top: 20, left: 15, right: 15),
@@ -48,7 +49,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
                       // height: 40,
                       child: TextFormField(
                         maxLines: 3,
-                        controller: _firstNameController
+                        controller: _addressController
                           ..text =
                               'Perumahan IPB Alam Sinarsari Blok A No 30 Dramaga, Kab. Bogor, Jawa Barat 16680',
                         enableInteractiveSelection: false,

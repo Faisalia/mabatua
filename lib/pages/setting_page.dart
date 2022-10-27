@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './edit_profile/edit_name_page.dart';
 import './edit_profile/edit_address_page.dart';
 import './edit_profile/edit_username_page.dart';
+import './edit_profile/edit_old_password_page.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -23,10 +24,15 @@ class SettingPage extends StatelessWidget {
                 // color: Colors.red,
                 child: Row(
                   children: [
-                    Image.asset(
-                      'assets/images/back_icon.png',
-                      width: 40,
-                      height: 40,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Image.asset(
+                        'assets/images/back_icon.png',
+                        width: 40,
+                        height: 40,
+                      ),
                     ),
                     Container(
                       width: deviceWidth -
@@ -111,7 +117,10 @@ class SettingPage extends StatelessWidget {
                         Icons.keyboard_arrow_right,
                         color: Theme.of(context).primaryColor,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushNamed(EditOldPasswordPage.routeName);
+                      },
                     ),
                     Divider(
                       color: Theme.of(context).primaryColor,
