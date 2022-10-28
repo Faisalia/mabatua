@@ -58,27 +58,29 @@ class Result extends StatelessWidget {
               ),
             ]),
           ),
-          Container(
-            width: double.infinity,
-            height: 40,
-            child: OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Theme.of(context).primaryColor),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
+          // Tampilkan tombol lainnya jika jumlah rekomendasi makanan lebih dari 3
+          if (_foods.length > 3)
+            Container(
+              width: double.infinity,
+              height: 40,
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(color: Theme.of(context).primaryColor),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
                 ),
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(FoodListPage.routeName);
-              },
-              child: Text(
-                "LIHAT LAINNYA",
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
+                onPressed: () {
+                  Navigator.of(context).pushNamed(FoodListPage.routeName);
+                },
+                child: Text(
+                  "LIHAT LAINNYA",
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
               ),
             ),
-          ),
         ],
       ),
     );
