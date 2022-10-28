@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:local_savekost/widgets/food_card.dart';
+import '../pages/food_list_page.dart';
+import '../models/Foods.dart';
 
 class Result extends StatelessWidget {
   const Result({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> _foods = foods;
     return Container(
       padding: EdgeInsets.only(top: 10),
       // color: Colors.blue,
@@ -38,9 +41,21 @@ class Result extends StatelessWidget {
             // height: 400,
             // color: Colors.pink,
             child: Column(children: [
-              FoodCard(),
-              FoodCard(),
-              FoodCard(),
+              FoodCard(
+                foodName: _foods[0]['nama'],
+                foodPrice: _foods[0]['harga'],
+                loc: _foods[0]['lokasi'],
+              ),
+              FoodCard(
+                foodName: _foods[1]['nama'],
+                foodPrice: _foods[1]['harga'],
+                loc: _foods[1]['lokasi'],
+              ),
+              FoodCard(
+                foodName: _foods[2]['nama'],
+                foodPrice: _foods[2]['harga'],
+                loc: _foods[2]['lokasi'],
+              ),
             ]),
           ),
           Container(
@@ -53,7 +68,9 @@ class Result extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(FoodListPage.routeName);
+              },
               child: Text(
                 "LIHAT LAINNYA",
                 style: TextStyle(

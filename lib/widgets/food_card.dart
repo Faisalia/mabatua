@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 class FoodCard extends StatelessWidget {
-  const FoodCard({Key? key}) : super(key: key);
+  const FoodCard(
+      {Key? key,
+      required this.foodName,
+      required this.foodPrice,
+      required this.loc})
+      : super(key: key);
+  final String foodName;
+  final double foodPrice;
+  final String loc;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +69,7 @@ class FoodCard extends StatelessWidget {
                                 width: 5,
                               ),
                               Text(
-                                'Cah Kangkung',
+                                foodName,
                                 style: TextStyle(fontSize: 10),
                               )
                             ],
@@ -73,37 +81,46 @@ class FoodCard extends StatelessWidget {
                               vertical: 5, horizontal: 10),
                           child: Row(
                             children: [
-                              Container(
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.discount),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      'Rp10.000',
-                                      style: TextStyle(fontSize: 10),
-                                    )
-                                  ],
+                              Expanded(
+                                child: Container(
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.discount),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        'Rp${foodPrice}',
+                                        style: TextStyle(fontSize: 10),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                              SizedBox(width: 15),
-                              Container(
-                                child: Row(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.location_on_outlined),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                          'Alvin Jaya',
-                                          style: TextStyle(fontSize: 10),
-                                        )
-                                      ],
-                                    )
-                                  ],
+                              // SizedBox(width: 15),
+                              Expanded(
+                                child: Container(
+                                  child: Row(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(Icons.location_on_outlined),
+                                          Container(
+                                            // color: Colors.yellow,
+                                            width: 60,
+                                            // height: 20,
+                                            child: Flexible(
+                                              child: Text(
+                                                loc,
+                                                style: TextStyle(fontSize: 10),
+                                                overflow: TextOverflow.visible,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               )
                             ],

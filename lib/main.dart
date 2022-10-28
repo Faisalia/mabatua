@@ -10,6 +10,7 @@ import './pages/edit_profile/edit_address_page.dart';
 import './pages/edit_profile/edit_username_page.dart';
 import './pages/edit_profile/edit_new_password_page.dart';
 import './pages/edit_profile/edit_old_password_page.dart';
+import './pages/food_list_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         EditUsernamePage.routeName: (context) => EditUsernamePage(),
         EditOldPasswordPage.routeName: (context) => EditOldPasswordPage(),
         EditNewPasswordPage.routeName: (context) => EditNewPasswordPage(),
+        FoodListPage.routeName: (context) => FoodListPage()
       },
     );
   }
