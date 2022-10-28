@@ -11,10 +11,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
+  bool _showResult = false;
+
+  void _displayResult() {
+    FocusScope.of(context).unfocus();
+    setState(() {
+      _showResult = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    debugPrint('${_currentIndex}');
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 35),
       child: SingleChildScrollView(
@@ -103,29 +110,28 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     flex: 1,
                     child: InkWell(
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 43),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              bottomRight: Radius.circular(20)),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 43),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                bottomRight: Radius.circular(20)),
+                          ),
+                          // height: double.infinity,
+                          child: Icon(
+                            Icons.exit_to_app,
+                            color: Colors.white,
+                            size: 64,
+                          ),
                         ),
-                        // height: double.infinity,
-                        child: Icon(
-                          Icons.exit_to_app,
-                          color: Colors.white,
-                          size: 64,
-                        ),
-                      ),
-                      onTap: () {},
-                    ),
+                        onTap: _displayResult),
                   ),
                 ],
               ),
             ),
             // RESULT
-            Result()
+            if (_showResult) Result()
           ],
         ),
       ),

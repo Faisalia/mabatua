@@ -21,21 +21,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'SaveKost',
       theme: ThemeData(
-        primaryColor: Color(0xFF00D1FF),
-        primaryColorDark: Color(0xFF0CAACD),
+        primaryColor: Color(0xFF118EEB),
+        primaryColorDark: Color(0xFF0172C6),
         iconTheme: IconThemeData(
-          color: Color(0xFF00D1FF),
+          color: Color(0xFF118EEB),
         ),
         scaffoldBackgroundColor: Colors.white,
         textTheme: Theme.of(context).textTheme.apply(
-              bodyColor: Color(0xFF00D1FF),
+              bodyColor: Color(0xFF118EEB),
             ),
         elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(primary: Color(0xFF00D1FF)),
+          style: ElevatedButton.styleFrom(primary: Color(0xFF118EEB)),
         ),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
-            primary: Color(0xFF00D1FF),
+            primary: Color(0xFF118EEB),
           ),
         ),
       ),
