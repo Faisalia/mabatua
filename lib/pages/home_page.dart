@@ -35,84 +35,90 @@ class _HomePageState extends State<HomePage> {
               // color: Colors.green,
               // height: 150,
               // width: double.infinity,
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 4,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        // color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            bottomLeft: Radius.circular(20)),
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 75,
-                            child: TextField(
-                              decoration: InputDecoration(
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Theme.of(context).primaryColor,
-                                      width: 2),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
+              child: Form(
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 4,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          // color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)),
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 75,
+                              child: TextFormField(
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'harus diisi';
+                                  }
+                                },
+                                decoration: InputDecoration(
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Theme.of(context).primaryColor,
+                                        width: 2),
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                    ),
                                   ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Theme.of(context).primaryColor),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Theme.of(context).primaryColor),
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                    ),
                                   ),
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 30),
-                                hintText: 'Masukkan jumlah uang (Rp)',
-                                hintStyle: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontWeight: FontWeight.w300,
+                                  contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 30),
+                                  hintText: 'Masukkan jumlah uang (Rp)',
+                                  hintStyle: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontWeight: FontWeight.w300,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            height: 75,
-                            child: TextField(
-                              decoration: InputDecoration(
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Theme.of(context).primaryColor,
-                                      width: 2),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20),
+                            Container(
+                              height: 75,
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Theme.of(context).primaryColor,
+                                        width: 2),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(20),
+                                    ),
                                   ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Theme.of(context).primaryColor),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Theme.of(context).primaryColor),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(20),
+                                    ),
                                   ),
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 30),
-                                hintText: 'Masukkan jumlah hari',
-                                hintStyle: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontWeight: FontWeight.w300,
+                                  contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 30),
+                                  hintText: 'Masukkan jumlah hari',
+                                  hintStyle: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontWeight: FontWeight.w300,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: InkWell(
+                    Expanded(
+                      flex: 1,
+                      child: InkWell(
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: 43),
                           decoration: BoxDecoration(
@@ -128,9 +134,11 @@ class _HomePageState extends State<HomePage> {
                             size: 64,
                           ),
                         ),
-                        onTap: _displayResult),
-                  ),
-                ],
+                        onTap: _displayResult,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             // RESULT
