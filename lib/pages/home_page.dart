@@ -3,8 +3,9 @@ import '../widgets/result.dart';
 import '../widgets/username_title.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, required this.username}) : super(key: key);
   static const routeName = '/home';
+  final String username;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -27,7 +28,9 @@ class _HomePageState extends State<HomePage> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            UsernameTitle(),
+            UsernameTitle(
+              username: widget.username,
+            ),
             IntrinsicHeight(
               // color: Colors.green,
               // height: 150,

@@ -7,13 +7,16 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String usernamefromget = 'username from get';
     return Container(
       padding: EdgeInsets.symmetric(vertical: 35),
       child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: UsernameTitle(),
+            child: UsernameTitle(
+              username: usernamefromget,
+            ),
           ),
           Container(
             padding: EdgeInsets.only(top: 20, left: 15, right: 15, bottom: 20),

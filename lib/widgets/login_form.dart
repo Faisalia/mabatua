@@ -4,6 +4,8 @@ import '../pages/main_page.dart';
 import '../models/login_request_model.dart';
 import '../services/api_service.dart';
 import '../pages/main_page.dart';
+import '../models/login_response_model.dart';
+import '../models/mahasiswa.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -206,15 +208,18 @@ class _LoginFormState extends State<LoginForm> {
                                 _isAPICallProcess = false;
                               });
 
-                              if (response) {
+                              if (response["data"] != null) {
+                                LoginResponseModel data = response["data"];
+                                Mahasiswa mhs = data.mahasiswa;
                                 Navigator.pushNamedAndRemoveUntil(
                                   context,
                                   MainPage.routeName,
+                                  arguments: mhs.username,
                                   (route) => false,
                                 );
                               } else {
                                 print('invalid username/password');
-                                _showErrorDialog("Wrong username/password");
+                                _showErrorDialog(response["message"]);
                               }
                             });
                           }

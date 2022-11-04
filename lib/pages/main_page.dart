@@ -13,17 +13,23 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
-  List _pages = [
-    HomePage(),
-    ProfilePage(),
-  ];
+  // List _pages = [
+  //   HomePage(u),
+  //   ProfilePage(),
+  // ];
 
   @override
   Widget build(BuildContext context) {
+    final String args = ModalRoute.of(context)!.settings.arguments as String;
+    print("args : " + args);
     // debugPrint('${_currentIndex}');
     return Scaffold(
       extendBody: true,
-      body: _pages[_currentIndex],
+      body: _currentIndex == 0
+          ? HomePage(
+              username: args,
+            )
+          : ProfilePage(),
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),

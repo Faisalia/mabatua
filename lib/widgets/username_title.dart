@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class UsernameTitle extends StatelessWidget {
-  const UsernameTitle({Key? key}) : super(key: key);
+  const UsernameTitle({Key? key, required this.username}) : super(key: key);
+  final String username;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class UsernameTitle extends StatelessWidget {
                   text: 'Hai, ',
                 ),
                 TextSpan(
-                    text: 'Username !',
+                    text: '${username} !',
                     style: TextStyle(fontWeight: FontWeight.bold)),
               ]))
         ],

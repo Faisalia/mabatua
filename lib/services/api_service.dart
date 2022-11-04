@@ -13,7 +13,7 @@ import 'package:dio/dio.dart';
 
 class APIService {
   // LOGIN REQUEST
-  static Future<bool> login(LoginRequestModel model) async {
+  static Future<Map<String, dynamic>> login(LoginRequestModel model) async {
     print("model login request: ");
     print(model.toJson());
     var url = Uri.https(Config.apiURL, Config.loginAPI);
@@ -32,32 +32,30 @@ class APIService {
       print(response.data);
       print("response status login :");
       print(response.statusCode);
+
+      String strResponseData = response.data;
+      Map<String, dynamic> mapResponseData = json.decode(response.data);
       if (response.statusCode == 200) {
-        // shared service
-        await SharedService.setLoginDetails(
-          loginResponseJson(response.data),
-        );
-        print("done setLoginDetails in login function...");
-        return true;
-      } else {
-        return false;
+        return {
+          "message": "success",
+          "data": loginResponseJson(strResponseData)
+        };
       }
     } on DioError catch (e) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx and is also not 304.
       if (e.response != null) {
-        print("e.response != null");
         print(e.response!.data);
+        Map<String, dynamic> mapResponseData = json.decode(e.response!.data);
+
         print(e.response!.headers);
         print(e.response!.requestOptions);
+        return {"message": mapResponseData["error"], "data": null};
       } else {
-        // Something happened in setting up or sending the request that triggered an Error
-        print("e.response null");
         print(e.requestOptions);
         print(e.message);
+        return {"message": "error", "data": null};
       }
-      return false;
     }
+    return {"message": "error", "data": null};
   }
 
   // REGISTER REQUEST
