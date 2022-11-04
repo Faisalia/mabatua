@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.local_savekost">
+   <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="local_savekost"
         android:name="${applicationName}"

@@ -11,13 +11,13 @@ class RegisterPage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(top: 100),
+                margin: EdgeInsets.only(top: 50),
                 height: 150,
                 width: 150,
                 child: Image.asset('assets/images/icon_savekost.png'),
               ),
               SizedBox(
-                height: 50,
+                height: 10,
               ),
               RegisterForm(),
             ],
