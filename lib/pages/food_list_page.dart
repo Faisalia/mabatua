@@ -66,16 +66,18 @@ class _FoodListPageState extends State<FoodListPage> {
                           50 -
                           55, // deviceHeight - sizedbox - fontsize - paddingTop - iconback_height - paddingtop
                       child: ListView.builder(
-                          padding: EdgeInsets.only(top: 0),
-                          shrinkWrap: true,
-                          itemCount: _foods.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return FoodCard(
-                              foodName: _foods[index]['nama'],
-                              foodPrice: _foods[index]['harga'],
-                              loc: _foods[index]['lokasi'],
-                            );
-                          }),
+                        padding: EdgeInsets.only(top: 0),
+                        shrinkWrap: true,
+                        itemCount: _foods.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return FoodCard(
+                            foodName: _foods[index]['nama'],
+                            foodPrice: _foods[index]['harga'],
+                            loc: _foods[index]['lokasi'],
+                            deskripsi: _foods[index]['deskripsi'],
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),

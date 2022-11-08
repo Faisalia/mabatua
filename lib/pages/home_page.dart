@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../widgets/result.dart';
 import '../widgets/username_title.dart';
+import '../services/api_service.dart';
+import '../models/rekomendasi.dart';
+import '../models/restoran.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.username}) : super(key: key);
@@ -12,13 +15,91 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  GlobalKey<FormState> _globalFormKey = GlobalKey<FormState>();
   bool _showResult = false;
+  String _inputBudget = '';
+  String _inputHari = '';
+  bool isLoaded = false;
+  Rekomendasi? _rekomendasi;
+  List<Restoran> _listRestoran = [];
 
   void _displayResult() {
     FocusScope.of(context).unfocus();
     setState(() {
       _showResult = true;
     });
+  }
+
+  // GET RESTORAN DATA
+  void _getRestoranData(String restoId, {required bool isLastIndex}) {
+    // get restoran data
+    print('get restoran data...');
+    APIService.getRestoran(restoId).then((restoData) {
+      if (restoData != null) {
+        print('resto data not null');
+        print(restoData.nama);
+        _listRestoran.add(restoData);
+
+        if (isLastIndex) {
+          print('listResto : ');
+          print(_listRestoran);
+          setState(() {
+            isLoaded = true;
+          });
+        }
+      }
+    });
+    print('finish get resto data');
+  }
+
+  // GET REKOMENDASI DATA
+  void _getRekomendasiData() {
+    setState(() {
+      isLoaded = false;
+    });
+    // get rekomendasi data
+    print('get rekomendasi data...');
+    print('budget: ${_inputBudget}');
+    print('hari: ${_inputHari}');
+    APIService.getRekomendasi(_inputBudget, _inputHari).then((rekomendasiData) {
+      print("rekomendasi data : ");
+      print(rekomendasiData);
+      if (rekomendasiData != null) {
+        _rekomendasi = rekomendasiData;
+        if (rekomendasiData.rekomendasiMakanan.isNotEmpty) {
+          for (int i = 0; i < rekomendasiData.rekomendasiMakanan.length; i++) {
+            if (i == rekomendasiData.rekomendasiMakanan.length - 1) {
+              _getRestoranData(rekomendasiData.rekomendasiMakanan[i].restoran,
+                  isLastIndex: true);
+            } else {
+              _getRestoranData(rekomendasiData.rekomendasiMakanan[i].restoran,
+                  isLastIndex: false);
+            }
+          }
+        } else {
+          setState(() {
+            isLoaded = true;
+          });
+        }
+      }
+    });
+  }
+
+  void _save() {
+    final form = _globalFormKey.currentState;
+    form!.save();
+
+    print('inputBudget : ${_inputBudget}');
+    print('inputHari: ${_inputHari}');
+
+    if (_inputBudget.isNotEmpty && _inputHari.isNotEmpty) {
+      _displayResult();
+      _getRekomendasiData();
+    } else {
+      setState(() {
+        _showResult = false;
+      });
+    }
   }
 
   @override
@@ -36,6 +117,7 @@ class _HomePageState extends State<HomePage> {
               // height: 150,
               // width: double.infinity,
               child: Form(
+                key: _globalFormKey,
                 child: Row(
                   children: [
                     Expanded(
@@ -52,10 +134,8 @@ class _HomePageState extends State<HomePage> {
                             Container(
                               height: 75,
                               child: TextFormField(
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'harus diisi';
-                                  }
+                                onSaved: (newValue) => {
+                                  _inputBudget = newValue!,
                                 },
                                 decoration: InputDecoration(
                                   focusedBorder: OutlineInputBorder(
@@ -86,6 +166,9 @@ class _HomePageState extends State<HomePage> {
                             Container(
                               height: 75,
                               child: TextFormField(
+                                onSaved: (newValue) => {
+                                  _inputHari = newValue!,
+                                },
                                 decoration: InputDecoration(
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
@@ -134,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                             size: 64,
                           ),
                         ),
-                        onTap: _displayResult,
+                        onTap: _save,
                       ),
                     ),
                   ],
@@ -142,7 +225,15 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             // RESULT
-            if (_showResult) Result()
+            if (_showResult)
+              !isLoaded
+                  ? CircularProgressIndicator()
+                  : Result(
+                      budget: _inputBudget,
+                      hari: _inputHari,
+                      rekomendasi: _rekomendasi,
+                      listRestoran: _listRestoran,
+                    )
           ],
         ),
       ),

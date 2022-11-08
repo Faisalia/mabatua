@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import '../pages/food_desc_page.dart';
 
 class FoodCard extends StatelessWidget {
-  const FoodCard(
-      {Key? key,
-      required this.foodName,
-      required this.foodPrice,
-      required this.loc})
-      : super(key: key);
+  const FoodCard({
+    Key? key,
+    required this.foodName,
+    required this.foodPrice,
+    required this.loc,
+    required this.deskripsi,
+  }) : super(key: key);
   final String foodName;
-  final double foodPrice;
+  final int foodPrice;
   final String loc;
+  final String deskripsi;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,8 @@ class FoodCard extends StatelessWidget {
                   arguments: {
                     'nama': foodName,
                     'harga': foodPrice,
-                    'lokasi': loc
+                    'lokasi': loc,
+                    'deskripsi': deskripsi
                   });
             },
             child: Container(
@@ -52,7 +55,8 @@ class FoodCard extends StatelessWidget {
                   arguments: {
                     'nama': foodName,
                     'harga': foodPrice,
-                    'lokasi': loc
+                    'lokasi': loc,
+                    'deskripsi': deskripsi
                   });
             },
             child: Container(

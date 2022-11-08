@@ -7,6 +7,8 @@ class FoodDescPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    print(args);
+
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -146,7 +148,7 @@ class FoodDescPage extends StatelessWidget {
                           ),
                           SizedBox(height: 20),
                           Text(
-                            'Cah kangkung adalah makanan yang dibuat dari sayur kangkung dengan memakai bahan penyedap seperti cabai, kaldu, dan bawang putih.',
+                            args['deskripsi'],
                             style: TextStyle(
                                 height: 1.5,
                                 color: Theme.of(context).primaryColor),

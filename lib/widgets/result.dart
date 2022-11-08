@@ -2,13 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:local_savekost/widgets/food_card.dart';
 import '../pages/food_list_page.dart';
 import '../models/Foods.dart';
+import '../models/rekomendasi.dart';
+import '../services/api_service.dart';
+import '../models/restoran.dart';
 
 class Result extends StatelessWidget {
-  const Result({Key? key}) : super(key: key);
+  const Result(
+      {Key? key,
+      required this.budget,
+      required this.hari,
+      this.rekomendasi,
+      required this.listRestoran})
+      : super(key: key);
+  final String budget;
+  final String hari;
+  final Rekomendasi? rekomendasi;
+  final List<Restoran> listRestoran;
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, dynamic>> _foods = foods;
+    // final List<Map<String, dynamic>> _foods = foods;
     return Container(
       padding: EdgeInsets.only(top: 10),
       // color: Colors.blue,
@@ -25,7 +38,7 @@ class Result extends StatelessWidget {
                       style: TextStyle(color: Theme.of(context).primaryColor),
                       children: [
                     TextSpan(
-                      text: 'Rp10.000',
+                      text: '${rekomendasi!.rekomendasiPengeluaranPerMakanan}',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     TextSpan(
@@ -34,32 +47,28 @@ class Result extends StatelessWidget {
                   ]))
             ],
           ),
+
           SizedBox(height: 10),
           Text('Rekomendasi makanan yang cocok'),
           SizedBox(height: 20),
-          Container(
-            // height: 400,
-            // color: Colors.pink,
-            child: Column(children: [
-              FoodCard(
-                foodName: _foods[0]['nama'],
-                foodPrice: _foods[0]['harga'],
-                loc: _foods[0]['lokasi'],
-              ),
-              FoodCard(
-                foodName: _foods[1]['nama'],
-                foodPrice: _foods[1]['harga'],
-                loc: _foods[1]['lokasi'],
-              ),
-              FoodCard(
-                foodName: _foods[2]['nama'],
-                foodPrice: _foods[2]['harga'],
-                loc: _foods[2]['lokasi'],
-              ),
-            ]),
+
+          ListView.builder(
+            padding: EdgeInsets.only(top: 0),
+            shrinkWrap: true,
+            itemCount: (rekomendasi?.rekomendasiMakanan)!.length > 3
+                ? 3
+                : rekomendasi?.rekomendasiMakanan.length,
+            itemBuilder: (BuildContext context, int index) {
+              return FoodCard(
+                foodName: rekomendasi!.rekomendasiMakanan[index].nama,
+                foodPrice: rekomendasi!.rekomendasiMakanan[index].harga,
+                loc: listRestoran[index].nama,
+                deskripsi: rekomendasi!.rekomendasiMakanan[index].deskripsi,
+              );
+            },
           ),
           // Tampilkan tombol lainnya jika jumlah rekomendasi makanan lebih dari 3
-          if (_foods.length > 3)
+          if (rekomendasi!.rekomendasiMakanan.length > 3)
             Container(
               width: double.infinity,
               height: 40,

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:local_savekost/models/login_response_model.dart';
@@ -10,6 +11,8 @@ import '../models/register_response_model.dart';
 import '../config.dart';
 import './shared_service.dart';
 import 'package:dio/dio.dart';
+import '../models/rekomendasi.dart';
+import '../models/restoran.dart';
 
 class APIService {
   // LOGIN REQUEST
@@ -89,6 +92,55 @@ class APIService {
         "message": "success",
         "data": registerResponseJson(strResponseData)
       };
+    }
+  }
+
+  static Future<Rekomendasi?> getRekomendasi(String budget, String hari) async {
+    // DEFINE URL
+    print("get rekomendasi request: ");
+    // print(model.toJson());
+    var url = Uri.https(
+        Config.apiURL, Config.rekomendasiAPI, {'budget': budget, 'hari': hari});
+    print("uri url :");
+    print(url);
+
+    // get request
+    Response response;
+    var dio = Dio();
+    response = await dio.get(
+      url.toString(),
+      options: Options(responseType: ResponseType.plain),
+    );
+    if (response.statusCode == 200) {
+      var json = response.data;
+      return rekomendasiFromJson(json);
+    }
+  }
+
+  // GET FOTO MAKANAN
+
+  // GET RESTO BY ID
+  static Future<Restoran?> getRestoran(String id) async {
+    // DEFINE URL
+    print("get restoran by id request: ");
+    print('restoran id : ${id}');
+    // print(model.toJson());
+    String query = Config.restoranAPI + id;
+    var url = Uri.https(Config.apiURL, query);
+    print("uri url :");
+    print(url);
+
+    // get request
+    Response response;
+    var dio = Dio();
+    response = await dio.get(
+      url.toString(),
+      options: Options(responseType: ResponseType.plain),
+    );
+    if (response.statusCode == 200) {
+      var json = response.data;
+      print('response data : ${json}');
+      return restoranFromJson(json);
     }
   }
 }
