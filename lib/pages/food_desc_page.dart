@@ -57,19 +57,26 @@ class FoodDescPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              Container(
-                decoration: BoxDecoration(
-                  // color: Theme.of(context).primaryColor,
-                  // color: Colors.blue,
-
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/food.png'),
-                  ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  args['imageURL'],
+                  fit: BoxFit.fill,
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  },
+                  width: 150,
+                  height: 150,
                 ),
-                width: 150,
-                height: 150,
               ),
               SizedBox(height: 20),
               Container(
@@ -78,10 +85,9 @@ class FoodDescPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Expanded(
-                      // color: Colors.blue,
+                    Container(
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        // mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Icon(
                             Icons.discount,
@@ -98,22 +104,20 @@ class FoodDescPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 15),
-                    Expanded(
+                    Container(
                       // color: Colors.yellow,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        // mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Icon(
                             Icons.location_on_outlined,
                             size: 30,
                           ),
                           Container(
-                            child: Flexible(
-                              child: Text(
-                                args['lokasi'],
-                                style: TextStyle(fontSize: 14),
-                                overflow: TextOverflow.visible,
-                              ),
+                            child: Text(
+                              args['lokasi'],
+                              style: TextStyle(fontSize: 14),
+                              // overflow: TextOverflow.visible,
                             ),
                           )
                         ],

@@ -60,6 +60,7 @@ class Result extends StatelessWidget {
                 : rekomendasi?.rekomendasiMakanan.length,
             itemBuilder: (BuildContext context, int index) {
               return FoodCard(
+                foodId: rekomendasi!.rekomendasiMakanan[index].id,
                 foodName: rekomendasi!.rekomendasiMakanan[index].nama,
                 foodPrice: rekomendasi!.rekomendasiMakanan[index].harga,
                 loc: listRestoran[index].nama,
@@ -80,7 +81,13 @@ class Result extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed(FoodListPage.routeName);
+                  Navigator.of(context).pushNamed(
+                    FoodListPage.routeName,
+                    arguments: {
+                      'rekomendasiMakanan': rekomendasi?.rekomendasiMakanan,
+                      'listRestoran': listRestoran
+                    },
+                  );
                 },
                 child: Text(
                   "LIHAT LAINNYA",

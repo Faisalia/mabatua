@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import '../pages/food_desc_page.dart';
+import '../config.dart';
 
 class FoodCard extends StatelessWidget {
   const FoodCard({
     Key? key,
+    required this.foodId,
     required this.foodName,
     required this.foodPrice,
     required this.loc,
     required this.deskripsi,
   }) : super(key: key);
+  final String foodId;
   final String foodName;
   final int foodPrice;
   final String loc;
@@ -17,33 +20,47 @@ class FoodCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
+    String imageURL =
+        'https://' + Config.apiURL + Config.makananAPI + foodId + '/foto';
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed(FoodDescPage.routeName,
-                  arguments: {
-                    'nama': foodName,
-                    'harga': foodPrice,
-                    'lokasi': loc,
-                    'deskripsi': deskripsi
-                  });
+              Navigator.of(context).pushNamed(
+                FoodDescPage.routeName,
+                arguments: {
+                  'nama': foodName,
+                  'harga': foodPrice,
+                  'lokasi': loc,
+                  'deskripsi': deskripsi,
+                  'imageURL': imageURL
+                },
+              );
             },
             child: Container(
-              decoration: BoxDecoration(
-                // color: Theme.of(context).primaryColor,
-                // color: Colors.blue,
-
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage('assets/images/food.png'),
-                ),
-              ),
               width: 100,
               height: 100,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  imageURL,
+                  fit: BoxFit.fill,
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
           ),
           SizedBox(
@@ -51,13 +68,16 @@ class FoodCard extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed(FoodDescPage.routeName,
-                  arguments: {
-                    'nama': foodName,
-                    'harga': foodPrice,
-                    'lokasi': loc,
-                    'deskripsi': deskripsi
-                  });
+              Navigator.of(context).pushNamed(
+                FoodDescPage.routeName,
+                arguments: {
+                  'nama': foodName,
+                  'harga': foodPrice,
+                  'lokasi': loc,
+                  'deskripsi': deskripsi,
+                  'imageURL': imageURL
+                },
+              );
             },
             child: Container(
               // color: Colors.green,

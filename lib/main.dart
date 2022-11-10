@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import './pages/starting_page.dart';
 import './pages/login_page.dart';
 import './pages/register_page.dart';
-import './pages/home_page.dart';
 import './pages/main_page.dart';
 import './pages/setting_page.dart';
 import './pages/edit_profile/edit_name_page.dart';

@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import '../widgets/result.dart';
 import '../widgets/recommendation_title.dart';
 import '../widgets/food_card.dart';
 import '../models/Foods.dart';
+import '../models/rekomendasi.dart';
+import '../models/restoran.dart';
 
 class FoodListPage extends StatefulWidget {
   const FoodListPage({Key? key}) : super(key: key);
@@ -13,10 +17,16 @@ class FoodListPage extends StatefulWidget {
 }
 
 class _FoodListPageState extends State<FoodListPage> {
-  final List<Map<String, dynamic>> _foods = foods;
+  // final List<Map<String, dynamic>> _foods = foods;
   @override
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
+    final _args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final List<RekomendasiMakanan> _rekomendasiMakanan =
+        _args['rekomendasiMakanan'];
+    final List<Restoran> _listRestoran = _args['listRestoran'];
+
     var padding = MediaQuery.of(context).padding;
     return Scaffold(
       extendBody: true,
@@ -68,13 +78,14 @@ class _FoodListPageState extends State<FoodListPage> {
                       child: ListView.builder(
                         padding: EdgeInsets.only(top: 0),
                         shrinkWrap: true,
-                        itemCount: _foods.length,
+                        itemCount: _rekomendasiMakanan.length,
                         itemBuilder: (BuildContext context, int index) {
                           return FoodCard(
-                            foodName: _foods[index]['nama'],
-                            foodPrice: _foods[index]['harga'],
-                            loc: _foods[index]['lokasi'],
-                            deskripsi: _foods[index]['deskripsi'],
+                            foodId: _rekomendasiMakanan[index].id,
+                            foodName: _rekomendasiMakanan[index].nama,
+                            foodPrice: _rekomendasiMakanan[index].harga,
+                            loc: _listRestoran[index].nama,
+                            deskripsi: _rekomendasiMakanan[index].deskripsi,
                           );
                         },
                       ),

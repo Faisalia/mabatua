@@ -4,4 +4,5 @@ class Config {
   static const registerAPI = '/api/mahasiswa/';
   static const rekomendasiAPI = '/api/makanan/rekomendasi';
   static const restoranAPI = '/api/restoran/';
+  static const makananAPI = '/api/makanan/';
 }
