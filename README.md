@@ -26,7 +26,7 @@
         </tr>
         <tr>
             <td>3</td>
-            <td>Faisal Ibrahin Abdusalam</td>
+            <td>Faisal Ibrahin Abusalam</td>
             <td>G64190054</td>
             <td>UI/UX</td>
         </tr>
