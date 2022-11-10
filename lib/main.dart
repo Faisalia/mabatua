@@ -22,21 +22,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'SaveKost',
       theme: ThemeData(
-        primaryColor: Color(0xFF118EEB),
-        primaryColorDark: Color(0xFF0172C6),
-        iconTheme: IconThemeData(
+        primaryColor: const Color(0xFF118EEB),
+        primaryColorDark: const Color(0xFF0172C6),
+        iconTheme: const IconThemeData(
           color: Color(0xFF118EEB),
         ),
         scaffoldBackgroundColor: Colors.white,
         textTheme: Theme.of(context).textTheme.apply(
-              bodyColor: Color(0xFF118EEB),
+              bodyColor: const Color(0xFF118EEB),
             ),
         elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(primary: Color(0xFF118EEB)),
+          style: ElevatedButton.styleFrom(primary: const Color(0xFF118EEB)),
         ),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
-            primary: Color(0xFF118EEB),
+            primary: const Color(0xFF118EEB),
           ),
         ),
       ),
@@ -44,15 +44,15 @@ class MyApp extends StatelessWidget {
       routes: {
         LoginPage.routeName: ((context) => LoginPage()),
         RegisterPage.routeName: (context) => RegisterPage(),
-        MainPage.routeName: (context) => MainPage(),
-        SettingPage.routeName: (context) => SettingPage(),
-        EditNamePage.routeName: (context) => EditNamePage(),
-        EditAddressPage.routeName: (context) => EditAddressPage(),
-        EditUsernamePage.routeName: (context) => EditUsernamePage(),
-        EditOldPasswordPage.routeName: (context) => EditOldPasswordPage(),
-        EditNewPasswordPage.routeName: (context) => EditNewPasswordPage(),
-        FoodListPage.routeName: (context) => FoodListPage(),
-        FoodDescPage.routeName: (context) => FoodDescPage(),
+        MainPage.routeName: (context) => const MainPage(),
+        SettingPage.routeName: (context) => const SettingPage(),
+        EditNamePage.routeName: (context) => const EditNamePage(),
+        EditAddressPage.routeName: (context) => const EditAddressPage(),
+        EditUsernamePage.routeName: (context) => const EditUsernamePage(),
+        EditOldPasswordPage.routeName: (context) => const EditOldPasswordPage(),
+        EditNewPasswordPage.routeName: (context) => const EditNewPasswordPage(),
+        FoodListPage.routeName: (context) => const FoodListPage(),
+        FoodDescPage.routeName: (context) => const FoodDescPage(),
       },
     );
   }
