@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:local_savekost/enum.dart';
 import '../../widgets/edit_title.dart';
+import '../../models/mahasiswa.dart';
 
 class EditUsernamePage extends StatefulWidget {
   const EditUsernamePage({Key? key}) : super(key: key);
@@ -12,9 +13,17 @@ class EditUsernamePage extends StatefulWidget {
 
 class _EditUsernamePageState extends State<EditUsernamePage> {
   TextEditingController _usernameController = TextEditingController();
+  var _isAPICall = false;
+
+  void _apiCall(bool isAPICall) {
+    setState(() {
+      _isAPICall = isAPICall;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    Mahasiswa user = ModalRoute.of(context)?.settings.arguments as Mahasiswa;
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 35),
@@ -23,6 +32,8 @@ class _EditUsernamePageState extends State<EditUsernamePage> {
             EditTitle(
               title: 'Ubah Username',
               editPage: EditPage.username,
+              user: user,
+              onAPICallProcess: _apiCall,
             ),
             Container(
               padding: EdgeInsets.only(top: 20, left: 15, right: 15),

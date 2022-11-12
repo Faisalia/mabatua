@@ -5,4 +5,5 @@ class Config {
   static const rekomendasiAPI = '/api/makanan/rekomendasi';
   static const restoranAPI = '/api/restoran/';
   static const makananAPI = '/api/makanan/';
+  static const userAPI = '/api/mahasiswa/';
 }

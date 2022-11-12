@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import './home_page.dart';
 import './profile_page.dart';
 import '../widgets/result.dart';
+import '../services/api_service.dart';
+import '../models/mahasiswa.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -12,24 +14,48 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  Mahasiswa? _user;
   int _currentIndex = 0;
+  bool _isDataLoaded = false;
   // List _pages = [
   //   HomePage(u),
   //   ProfilePage(),
   // ];
 
   @override
+  void initState() {
+    super.initState();
+    APIService.getUser().then((user) {
+      if (user != null) {
+        print('getUser in mainpage');
+        print('user plain pass: ${user.password}');
+        _user = user;
+        setState(() {
+          _isDataLoaded = true;
+        });
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final String args = ModalRoute.of(context)!.settings.arguments as String;
-    print("args : " + args);
+    print('build');
+    // final String args = ModalRoute.of(context)!.settings.arguments as String;
+    // print("args : " + args);
     // debugPrint('${_currentIndex}');
     return Scaffold(
       extendBody: true,
-      body: _currentIndex == 0
-          ? HomePage(
-              username: args,
+      body: !_isDataLoaded
+          ? Center(
+              child: CircularProgressIndicator(),
             )
-          : ProfilePage(),
+          : _currentIndex == 0
+              ? HomePage(
+                  username: _user!.username,
+                )
+              : ProfilePage(
+                  user: _user!,
+                ),
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),

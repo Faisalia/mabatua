@@ -13,10 +13,12 @@ import './shared_service.dart';
 import 'package:dio/dio.dart';
 import '../models/rekomendasi.dart';
 import '../models/restoran.dart';
+import '../models/mahasiswa.dart';
 
 class APIService {
   // LOGIN REQUEST
   static Future<Map<String, dynamic>> login(LoginRequestModel model) async {
+    var plainPassword = model.password;
     print("model login request: ");
     print(model.toJson());
     var url = Uri.https(Config.apiURL, Config.loginAPI);
@@ -36,9 +38,12 @@ class APIService {
       print("response status login :");
       print(response.statusCode);
 
-      String strResponseData = response.data;
       Map<String, dynamic> mapResponseData = json.decode(response.data);
+      mapResponseData['mahasiswa']['password'] = plainPassword;
+      String strResponseData = jsonEncode(mapResponseData);
+      print(mapResponseData);
       if (response.statusCode == 200) {
+        await SharedService.setLoginDetails(loginResponseJson(strResponseData));
         return {
           "message": "success",
           "data": loginResponseJson(strResponseData)
@@ -117,8 +122,6 @@ class APIService {
     }
   }
 
-  // GET FOTO MAKANAN
-
   // GET RESTO BY ID
   static Future<Restoran?> getRestoran(String id) async {
     // DEFINE URL
@@ -141,6 +144,65 @@ class APIService {
       var json = response.data;
       print('response data : ${json}');
       return restoranFromJson(json);
+    }
+  }
+
+  // GET USER BY ID
+  static Future<Mahasiswa?> getUser() async {
+    var loginDetails = await SharedService.loginDetails();
+    if (loginDetails != null) {
+      var user = loginDetails.mahasiswa;
+      debugPrint('logindetails data: ');
+      debugPrint(loginDetails.mahasiswa.id);
+
+      var userId = loginDetails.mahasiswa.id;
+      var userPlainPassword = loginDetails.mahasiswa.password;
+
+      String query = Config.userAPI + userId;
+      var url = Uri.https(Config.apiURL, query);
+      print("uri url :");
+      print(url);
+
+      // get request
+      Response response;
+      var dio = Dio();
+      response = await dio.get(
+        url.toString(),
+        options: Options(responseType: ResponseType.plain),
+      );
+      if (response.statusCode == 200) {
+        var json = response.data;
+        print('response data : ${json}');
+        user = mahasiswaFromJson(json);
+        user.password = userPlainPassword;
+        return user;
+      }
+    }
+  }
+
+  // UPDATE USER
+  static Future<Map<String, dynamic>> updateUser(
+      String userId, Map<String, dynamic> userRequest) async {
+    String query = Config.userAPI + userId;
+    var url = Uri.https(Config.apiURL, query);
+    print("uri url :");
+    print(url);
+
+    var dio = Dio();
+
+    var formData = FormData.fromMap(userRequest);
+    var response = await dio.put(
+      url.toString(),
+      data: formData,
+      options: Options(responseType: ResponseType.plain),
+    );
+    print(response.data);
+    Map<String, dynamic> mapResponseData = json.decode(response.data);
+    if (response.statusCode == 200) {
+      debugPrint('success update');
+      return {'message': 'updateSuccess', 'data': response.data};
+    } else {
+      return {"message": mapResponseData["error"], "data": null};
     }
   }
 }

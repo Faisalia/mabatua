@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:local_savekost/enum.dart';
 import '../../widgets/edit_title.dart';
+import '../../models/mahasiswa.dart';
 
 class EditNewPasswordPage extends StatefulWidget {
   const EditNewPasswordPage({Key? key}) : super(key: key);
@@ -15,6 +16,8 @@ class _EditNewPasswordPageState extends State<EditNewPasswordPage> {
   // TextEditingController _confirmPasswordController = TextEditingController();
   bool _obscureText = true;
   bool _obscureTextConfirm = true;
+  var _isAPICall = false;
+
   void _togglevisibility({bool isConfirm: false}) {
     setState(() {
       if (isConfirm) {
@@ -25,8 +28,15 @@ class _EditNewPasswordPageState extends State<EditNewPasswordPage> {
     });
   }
 
+  void _apiCall(bool isAPICall) {
+    setState(() {
+      _isAPICall = isAPICall;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    Mahasiswa user = ModalRoute.of(context)?.settings.arguments as Mahasiswa;
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 35),
@@ -35,6 +45,8 @@ class _EditNewPasswordPageState extends State<EditNewPasswordPage> {
             EditTitle(
               title: 'Ubah Password',
               editPage: EditPage.newPassword,
+              user: user,
+              onAPICallProcess: _apiCall,
             ),
             Container(
               padding: EdgeInsets.only(top: 20, left: 15, right: 15),

@@ -11,8 +11,18 @@ import './pages/edit_profile/edit_new_password_page.dart';
 import './pages/edit_profile/edit_old_password_page.dart';
 import './pages/food_list_page.dart';
 import './pages/food_desc_page.dart';
+import './services/shared_service.dart';
 
-void main() => runApp(const MyApp());
+Widget _defaultPage = StartingPage();
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  bool _result = await SharedService.isLoggedIn();
+  if (_result) {
+    _defaultPage = const MainPage();
+  }
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -40,8 +50,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: StartingPage(),
       routes: {
+        '/': (context) => _defaultPage,
         LoginPage.routeName: ((context) => LoginPage()),
         RegisterPage.routeName: (context) => RegisterPage(),
         MainPage.routeName: (context) => const MainPage(),

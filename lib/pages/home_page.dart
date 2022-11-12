@@ -111,6 +111,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             UsernameTitle(
               username: widget.username,
+              // username: 'username',
             ),
             IntrinsicHeight(
               // color: Colors.green,

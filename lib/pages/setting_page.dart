@@ -3,6 +3,8 @@ import './edit_profile/edit_name_page.dart';
 import './edit_profile/edit_address_page.dart';
 import './edit_profile/edit_username_page.dart';
 import './edit_profile/edit_old_password_page.dart';
+import '../models/mahasiswa.dart';
+import '../pages/main_page.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -10,6 +12,7 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Mahasiswa user = ModalRoute.of(context)?.settings.arguments as Mahasiswa;
     double deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
@@ -26,7 +29,8 @@ class SettingPage extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pop();
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            MainPage.routeName, (route) => false);
                       },
                       child: Image.asset(
                         'assets/images/back_icon.png',
@@ -74,24 +78,41 @@ class SettingPage extends StatelessWidget {
                         color: Theme.of(context).primaryColor,
                       ),
                       onTap: () {
-                        Navigator.of(context).pushNamed(EditNamePage.routeName);
+                        final result = Navigator.of(context)
+                            .pushNamed(EditNamePage.routeName, arguments: user)
+                            .then((result) {
+                          if (result != null) {
+                            ScaffoldMessenger.of(context)
+                              ..removeCurrentSnackBar()
+                              ..showSnackBar(
+                                SnackBar(
+                                  content: Text('$result'),
+                                  duration: Duration(seconds: 1),
+                                  backgroundColor:
+                                      Theme.of(context).primaryColor,
+                                ),
+                              );
+                          } else {
+                            return;
+                          }
+                        });
                       },
                     ),
-                    Divider(
-                      color: Theme.of(context).primaryColor,
-                      thickness: 1.0,
-                    ),
-                    ListTile(
-                      leading: Text('Ubah Lokasi'),
-                      trailing: Icon(
-                        Icons.keyboard_arrow_right,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      onTap: () {
-                        Navigator.of(context)
-                            .pushNamed(EditAddressPage.routeName);
-                      },
-                    ),
+                    // Divider(
+                    //   color: Theme.of(context).primaryColor,
+                    //   thickness: 1.0,
+                    // ),
+                    // ListTile(
+                    //   leading: Text('Ubah Lokasi'),
+                    //   trailing: Icon(
+                    //     Icons.keyboard_arrow_right,
+                    //     color: Theme.of(context).primaryColor,
+                    //   ),
+                    //   onTap: () {
+                    //     Navigator.of(context)
+                    //         .pushNamed(EditAddressPage.routeName);
+                    //   },
+                    // ),
                     Divider(
                       color: Theme.of(context).primaryColor,
                       thickness: 1.0,
@@ -103,8 +124,10 @@ class SettingPage extends StatelessWidget {
                         color: Theme.of(context).primaryColor,
                       ),
                       onTap: () {
-                        Navigator.of(context)
-                            .pushNamed(EditUsernamePage.routeName);
+                        Navigator.of(context).pushNamed(
+                          EditUsernamePage.routeName,
+                          arguments: user,
+                        );
                       },
                     ),
                     Divider(
@@ -118,8 +141,10 @@ class SettingPage extends StatelessWidget {
                         color: Theme.of(context).primaryColor,
                       ),
                       onTap: () {
-                        Navigator.of(context)
-                            .pushNamed(EditOldPasswordPage.routeName);
+                        Navigator.of(context).pushNamed(
+                          EditOldPasswordPage.routeName,
+                          arguments: user,
+                        );
                       },
                     ),
                     Divider(

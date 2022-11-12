@@ -8,8 +8,10 @@ import '../pages/login_page.dart';
 
 class SharedService {
   static Future<bool> isLoggedIn() async {
+    print('sharedservice isLoggedin');
     var isKeyExist =
         await APICacheManager().isAPICacheKeyExist("login_details");
+    debugPrint('isKeyExist in isLoggedin function : ${isKeyExist}');
 
     return isKeyExist;
   }
@@ -25,6 +27,7 @@ class SharedService {
   }
 
   static Future<void> setLoginDetails(LoginResponseModel model) async {
+    debugPrint('setLoginDetails...');
     APICacheDBModel cacheDBModel = APICacheDBModel(
       key: "login_details",
       syncData: jsonEncode(model.toJson()),

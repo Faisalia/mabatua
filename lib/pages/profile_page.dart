@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import '../widgets/username_title.dart';
 import '../pages/setting_page.dart';
+import '../services/shared_service.dart';
+import '../models/mahasiswa.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({Key? key, required this.user}) : super(key: key);
+
+  final Mahasiswa user;
 
   @override
   Widget build(BuildContext context) {
-    final String usernamefromget = 'username from get';
+    final String username = user.username;
+    final String namaLengkap = user.namaDepan + " " + user.namaBelakang;
     return Container(
       padding: EdgeInsets.symmetric(vertical: 35),
       child: Column(
@@ -15,7 +20,7 @@ class ProfilePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: UsernameTitle(
-              username: usernamefromget,
+              username: username,
             ),
           ),
           Container(
@@ -40,17 +45,17 @@ class ProfilePage extends StatelessWidget {
                       Text('Nama Lengkap :'),
                       SizedBox(height: 20),
                       Text(
-                        'Faisal Ibrahim Abusalam',
+                        namaLengkap,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 40),
                       // ALAMAT
-                      Text('Lokasi Saya : '),
-                      SizedBox(height: 20),
-                      Text(
-                        'Perumahan IPB Alam Sinarsari Blok A No 30 Dramaga, Kab. Bogor, Jawa Barat 16680',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      )
+                      // Text('Lokasi Saya : '),
+                      // SizedBox(height: 20),
+                      // Text(
+                      //   'Perumahan IPB Alam Sinarsari Blok A No 30 Dramaga, Kab. Bogor, Jawa Barat 16680',
+                      //   style: TextStyle(fontWeight: FontWeight.bold),
+                      // )
                     ],
                   ),
                 ),
@@ -67,8 +72,8 @@ class ProfilePage extends StatelessWidget {
                         ),
                         title: Text('Pengaturan'),
                         onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(SettingPage.routeName);
+                          Navigator.of(context).pushNamed(SettingPage.routeName,
+                              arguments: user);
                         },
                       ),
                       SizedBox(height: 20),
@@ -80,7 +85,9 @@ class ProfilePage extends StatelessWidget {
                           color: Theme.of(context).primaryColor,
                         ),
                         title: Text('Keluar'),
-                        onTap: () {},
+                        onTap: () {
+                          SharedService.logout(context);
+                        },
                       ),
                     ],
                   ),

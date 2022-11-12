@@ -1,3 +1,9 @@
+import 'dart:convert';
+
+Mahasiswa mahasiswaFromJson(String str) => Mahasiswa.fromJson(json.decode(str));
+
+String mahasiswaToJson(Mahasiswa data) => json.encode(data.toJson());
+
 class Mahasiswa {
   Mahasiswa({
     required this.id,
@@ -5,23 +11,23 @@ class Mahasiswa {
     required this.namaBelakang,
     required this.username,
     required this.password,
-    required this.V,
+    this.V,
   });
-  late final String id;
-  late final String namaDepan;
-  late final String namaBelakang;
-  late final String username;
-  late final String password;
-  late final int V;
+  String id;
+  String namaDepan;
+  String namaBelakang;
+  String username;
+  String password;
+  int? V;
 
-  Mahasiswa.fromJson(Map<String, dynamic> json) {
-    id = json['_id'];
-    namaDepan = json['namaDepan'];
-    namaBelakang = json['namaBelakang'];
-    username = json['username'];
-    password = json['password'];
-    V = json['__v'];
-  }
+  factory Mahasiswa.fromJson(Map<String, dynamic> json) => Mahasiswa(
+        id: json['_id'],
+        namaDepan: json['namaDepan'],
+        namaBelakang: json['namaBelakang'],
+        username: json['username'],
+        password: json['password'],
+        V: json['__v'],
+      );
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
