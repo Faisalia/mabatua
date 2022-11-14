@@ -13,17 +13,34 @@ class EditUsernamePage extends StatefulWidget {
 
 class _EditUsernamePageState extends State<EditUsernamePage> {
   TextEditingController _usernameController = TextEditingController();
-  var _isAPICall = false;
+  Mahasiswa? _user;
+  // var _isAPICall = false;
 
-  void _apiCall(bool isAPICall) {
-    setState(() {
-      _isAPICall = isAPICall;
-    });
+  void _onChangeUsername() {
+    print('Username text field: ${_usernameController.text}');
+    _user?.username = _usernameController.text;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _usernameController.addListener(_onChangeUsername);
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the widget tree.
+    // This also removes the _printLatestValue listener.
+    _usernameController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    Mahasiswa user = ModalRoute.of(context)?.settings.arguments as Mahasiswa;
+    Mahasiswa userArgs =
+        ModalRoute.of(context)?.settings.arguments as Mahasiswa;
+    _user = userArgs;
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 35),
@@ -32,8 +49,7 @@ class _EditUsernamePageState extends State<EditUsernamePage> {
             EditTitle(
               title: 'Ubah Username',
               editPage: EditPage.username,
-              user: user,
-              onAPICallProcess: _apiCall,
+              user: _user!,
             ),
             Container(
               padding: EdgeInsets.only(top: 20, left: 15, right: 15),
@@ -58,7 +74,7 @@ class _EditUsernamePageState extends State<EditUsernamePage> {
                     Container(
                       height: 40,
                       child: TextFormField(
-                        controller: _usernameController..text = 'username123',
+                        controller: _usernameController..text = _user!.username,
                         enableInteractiveSelection: false,
                         focusNode: FocusNode(),
                         decoration: InputDecoration(

@@ -13,8 +13,10 @@ class EditOldPasswordPage extends StatefulWidget {
 
 class _EditOldPasswordPageState extends State<EditOldPasswordPage> {
   TextEditingController _oldPasswordController = TextEditingController();
+  GlobalKey<FormState> _globalFormKey = GlobalKey<FormState>();
+  Mahasiswa? _user;
 
-  bool _obscureText = false;
+  bool _obscureText = true;
   var _isAPICall = false;
   void _togglevisibility() {
     setState(() {
@@ -22,15 +24,32 @@ class _EditOldPasswordPageState extends State<EditOldPasswordPage> {
     });
   }
 
-  void _apiCall(bool isAPICall) {
-    setState(() {
-      _isAPICall = isAPICall;
-    });
+  String? _onValidate(String value) {
+    print('value: ${value}');
+    if (value.isEmpty) {
+      return 'Password harus diisi';
+    } else if (value != _user!.password) {
+      return 'Password yang anda masukkan salah';
+    }
+  }
+
+  bool? validateAndSave() {
+    var form = _globalFormKey.currentState;
+    bool isValid = form!.validate();
+    if (isValid) {
+      debugPrint('valid in validateAndSave old pass');
+      form.save();
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    Mahasiswa user = ModalRoute.of(context)?.settings.arguments as Mahasiswa;
+    Mahasiswa userArgs =
+        ModalRoute.of(context)?.settings.arguments as Mahasiswa;
+    _user = userArgs;
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 35),
@@ -39,8 +58,8 @@ class _EditOldPasswordPageState extends State<EditOldPasswordPage> {
             EditTitle(
               title: 'Ubah Password',
               editPage: EditPage.oldPassword,
-              user: user,
-              onAPICallProcess: _apiCall,
+              user: _user!,
+              validateOldPassword: validateAndSave,
             ),
             Container(
               padding: EdgeInsets.only(top: 20, left: 15, right: 15),
@@ -52,6 +71,7 @@ class _EditOldPasswordPageState extends State<EditOldPasswordPage> {
                 ),
               ),
               child: Form(
+                key: _globalFormKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -63,10 +83,11 @@ class _EditOldPasswordPageState extends State<EditOldPasswordPage> {
                       height: 10,
                     ),
                     Container(
-                      height: 40,
                       child: TextFormField(
+                        validator: (value) => _onValidate(value!),
+                        onSaved: (value) => _user!.password = value!,
                         obscureText: _obscureText,
-                        controller: _oldPasswordController..text = '1234',
+                        controller: _oldPasswordController,
                         enableInteractiveSelection: false,
                         focusNode: FocusNode(),
                         decoration: InputDecoration(
@@ -96,6 +117,14 @@ class _EditOldPasswordPageState extends State<EditOldPasswordPage> {
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Theme.of(context).primaryColor),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red, width: 2),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red, width: 2),
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),

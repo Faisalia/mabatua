@@ -43,6 +43,10 @@ class _MainPageState extends State<MainPage> {
     // final String args = ModalRoute.of(context)!.settings.arguments as String;
     // print("args : " + args);
     // debugPrint('${_currentIndex}');
+
+    // var args = ModalRoute.of(context)!.settings.arguments
+    //     as Map<String, int>; // arguments from setting page for profile index
+    // _currentIndex = args['tabIndex']!;
     return Scaffold(
       extendBody: true,
       body: !_isDataLoaded

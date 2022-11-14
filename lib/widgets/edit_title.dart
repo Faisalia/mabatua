@@ -11,12 +11,16 @@ class EditTitle extends StatelessWidget {
     required this.title,
     required this.editPage,
     required this.user,
-    required this.onAPICallProcess,
+    this.validateOldPassword,
+    this.newPassword,
+    this.confirmNewPassword,
   }) : super(key: key);
   final String title;
   final EditPage editPage;
   final Mahasiswa user;
-  final Function onAPICallProcess;
+  final Function? validateOldPassword;
+  final String? newPassword;
+  final String? confirmNewPassword;
 
   @override
   Widget build(BuildContext context) {
@@ -58,37 +62,65 @@ class EditTitle extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                if (editPage == EditPage.name) {
-                  print('edit name');
-                  // update request
-                  Map<String, dynamic> userUpdateRequest = {
-                    'username': user.username,
-                    'namaDepan': user.namaDepan,
-                    'namaBelakang': user.namaBelakang,
-                    'authPassword': user.password,
-                    'password': user.password,
-                    'confirmPassword': user.password
-                  };
-                  print('userUpdateRequest:');
-                  print(userUpdateRequest);
-                  // onAPICallProcess(true);
-                  APIService.updateUser(user.id, userUpdateRequest)
-                      .then((response) {
-                    if (response['data'] != null) {
-                      print('update success');
-                      // onAPICallProcess(false);
-                      Navigator.of(context).pop('Update nama berhasil');
+                FocusManager.instance.primaryFocus?.unfocus();
+                // JIKA BERADA DI OLD PASSWORD PAGE
+                if (editPage == EditPage.oldPassword) {
+                  if (validateOldPassword != null) {
+                    if (validateOldPassword!()) {
+                      Navigator.of(context)
+                          .pushNamed(
+                        EditNewPasswordPage.routeName,
+                        arguments: user,
+                      )
+                          .then((result) {
+                        if (result != null) {
+                          Navigator.of(context).pop(result);
+                        } else {
+                          return;
+                        }
+                      });
                     }
-                  });
+                  }
+                  return;
                 }
+                print('new pass: ${newPassword}');
+                print('confirm pass: ${confirmNewPassword}');
+                Map<String, dynamic> userUpdateRequest = {
+                  'username': user.username,
+                  'namaDepan': user.namaDepan,
+                  'namaBelakang': user.namaBelakang,
+                  'authPassword': user.password,
+                  'password': newPassword == null ? user.password : newPassword,
+                  'confirmPassword': confirmNewPassword == null
+                      ? user.password
+                      : confirmNewPassword
+                };
 
-                // if (editPage == EditPage.name ||
-                //     editPage == EditPage.address ||
-                //     editPage == EditPage.username) {
-                //   Navigator.of(context).pop();
-                // } else if (editPage == EditPage.oldPassword) {
-                //   Navigator.of(context)
-                //       .pushNamed(EditNewPasswordPage.routeName);
+                // update request
+
+                print('userUpdateRequest:');
+                print(userUpdateRequest);
+                // onAPICallProcess(true);
+                APIService.updateUser(user.id, userUpdateRequest)
+                    .then((response) {
+                  if (response['data'] != null) {
+                    print('update success');
+                    // onAPICallProcess(false);
+                    if (editPage == EditPage.name) {
+                      Navigator.of(context).pop('Update nama berhasil');
+                    } else if (editPage == EditPage.username) {
+                      Navigator.of(context).pop('Update username berhasil');
+                    } else if (editPage == EditPage.newPassword) {
+                      Navigator.of(context).pop('Update password berhasil');
+                    }
+                  }
+                });
+
+                // if (editPage == EditPage.oldPassword) {
+                //   Navigator.of(context).pushNamed(
+                //     EditNewPasswordPage.routeName,
+                //     arguments: user,
+                //   );
                 // } else if (editPage == EditPage.newPassword) {
                 //   Navigator.of(context)
                 //       .popUntil(ModalRoute.withName(SettingPage.routeName));
