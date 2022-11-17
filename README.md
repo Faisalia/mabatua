@@ -63,7 +63,7 @@ Adapun batasan yang akan diberlakukan pada pengembangan proyek kali ini adalah :
 
 ## Research Plan
    ### Empathy Map
-   <img src="https://github.com/Faisalia/Pikmi/blob/main/img/logo2.png" width="250" height="250">
+   <img src="https://github.com/Faisalia/mabatua/blob/main/Research%20Plan/Empathy%20Map.png?raw=true">
    ### User Journey
    ### User Persona
    
