@@ -1,4 +1,6 @@
 # SaveKost
+ <img src="https://github.com/Faisalia/mabatua/blob/main/assets/images/logo.png?raw=true">
+ 
   • Kelompok 1 R3 Manajemen Perangkat Perangkat Lunak (MPPL)
 
 ## Anggota dan Role :
