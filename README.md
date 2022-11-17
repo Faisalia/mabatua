@@ -75,16 +75,16 @@ Adapun batasan yang akan diberlakukan pada pengembangan proyek kali ini adalah :
    
 ## System Analysis
    ### Use Case Diagram
-  <img src=" https://github.com/Faisalia/mabatua/blob/main/System%20Analyst/Activity%20Diagram%20-%20Save%20Kost.jpg?raw=true">
+  <img src="https://github.com/Faisalia/mabatua/blob/main/System%20Analyst/Activity%20Diagram%20-%20Save%20Kost.jpg?raw=true">
   
    ### Activity Diagram
-   <img src=" https://github.com/Faisalia/mabatua/blob/main/System%20Analyst/Activity%20Diagram%20-%20Save%20Kost.jpg?raw=true">
+   <img src="https://github.com/Faisalia/mabatua/blob/main/System%20Analyst/Activity%20Diagram%20-%20Save%20Kost.jpg?raw=true">
    
    ### ERD
-   <img src=" https://github.com/Faisalia/mabatua/blob/main/System%20Analyst/Activity%20Diagram%20-%20Save%20Kost.jpg?raw=true">
+   <img src="https://github.com/Faisalia/mabatua/blob/main/System%20Analyst/Activity%20Diagram%20-%20Save%20Kost.jpg?raw=true">
    
    ### Class Diagram
-   <img src=" https://github.com/Faisalia/mabatua/blob/main/System%20Analyst/Activity%20Diagram%20-%20Save%20Kost.jpg?raw=true">
+   <img src="https://github.com/Faisalia/mabatua/blob/main/System%20Analyst/Class%20Diagram%20-%20Save%20Kost.png?raw=true">
    
 ## Prototype
 
