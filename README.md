@@ -64,9 +64,12 @@ Adapun batasan yang akan diberlakukan pada pengembangan proyek kali ini adalah :
 ## Research Plan
    ### Empathy Map
    <img src="https://github.com/Faisalia/mabatua/blob/main/Research%20Plan/Empathy%20Map.png?raw=true">
+   
    ### Customer Journey
    <img src="https://github.com/Faisalia/mabatua/blob/main/Research%20Plan/Customer%20Journey.png?raw=true">
+   
    ### User Persona
+   <img src="https://github.com/Faisalia/mabatua/blob/main/Research%20Plan/User%20Persona.png?raw=true">
    
 ## System Analysis
    ### Use Case Diagram
