@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:local_savekost/widgets/food_card.dart';
 import '../pages/food_list_page.dart';
-import '../models/Foods.dart';
 import '../models/rekomendasi.dart';
 import '../services/api_service.dart';
 import '../models/restoran.dart';
@@ -60,6 +59,7 @@ class Result extends StatelessWidget {
                 : rekomendasi?.rekomendasiMakanan.length,
             itemBuilder: (BuildContext context, int index) {
               return FoodCard(
+                jarak: listRestoran[index].jarak,
                 foodId: rekomendasi!.rekomendasiMakanan[index].id,
                 foodName: rekomendasi!.rekomendasiMakanan[index].nama,
                 foodPrice: rekomendasi!.rekomendasiMakanan[index].harga,
@@ -84,6 +84,8 @@ class Result extends StatelessWidget {
                   Navigator.of(context).pushNamed(
                     FoodListPage.routeName,
                     arguments: {
+                      'rekomendasiPengeluaran':
+                          rekomendasi?.rekomendasiPengeluaranPerMakanan,
                       'rekomendasiMakanan': rekomendasi?.rekomendasiMakanan,
                       'listRestoran': listRestoran
                     },

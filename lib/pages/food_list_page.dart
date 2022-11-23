@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../widgets/result.dart';
 import '../widgets/recommendation_title.dart';
 import '../widgets/food_card.dart';
-import '../models/Foods.dart';
 import '../models/rekomendasi.dart';
 import '../models/restoran.dart';
 
@@ -26,6 +25,7 @@ class _FoodListPageState extends State<FoodListPage> {
     final List<RekomendasiMakanan> _rekomendasiMakanan =
         _args['rekomendasiMakanan'];
     final List<Restoran> _listRestoran = _args['listRestoran'];
+    final int _rekomendasiPengeluaran = _args['rekomendasiPengeluaran'];
 
     var padding = MediaQuery.of(context).padding;
     return Scaffold(
@@ -55,7 +55,7 @@ class _FoodListPageState extends State<FoodListPage> {
                                     color: Theme.of(context).primaryColor),
                                 children: [
                               TextSpan(
-                                text: 'Rp10.000',
+                                text: '${_rekomendasiPengeluaran}',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               TextSpan(
@@ -81,6 +81,7 @@ class _FoodListPageState extends State<FoodListPage> {
                         itemCount: _rekomendasiMakanan.length,
                         itemBuilder: (BuildContext context, int index) {
                           return FoodCard(
+                            jarak: _listRestoran[index].jarak,
                             foodId: _rekomendasiMakanan[index].id,
                             foodName: _rekomendasiMakanan[index].nama,
                             foodPrice: _rekomendasiMakanan[index].harga,

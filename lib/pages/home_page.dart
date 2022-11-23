@@ -21,7 +21,8 @@ class _HomePageState extends State<HomePage> {
   String _inputHari = '';
   bool isLoaded = false;
   Rekomendasi? _rekomendasi;
-  List<Restoran> _listRestoran = [];
+  List<Restoran>? _listRestoranTersedia;
+  List<Restoran> _listRestoranRekomendasi = [];
 
   void _displayResult() {
     FocusScope.of(context).unfocus();
@@ -31,29 +32,30 @@ class _HomePageState extends State<HomePage> {
   }
 
   // GET RESTORAN DATA
-  void _getRestoranData(String restoId, {required bool isLastIndex}) {
-    // get restoran data
-    print('get restoran data...');
-    APIService.getRestoran(restoId).then((restoData) {
-      if (restoData != null) {
-        print('resto data not null');
-        print(restoData.nama);
-        _listRestoran.add(restoData);
+  // void _getRestoranData(String restoId) {
+  //   // get restoran data
+  //   print('get restoran data...');
+  //   print('restoId...... : ${restoId}');
+  //   APIService.getRestoran(restoId).then((restoData) {
+  //     if (restoData != null) {
+  //       print('resto data not null');
+  //       print(restoData.nama);
+  //       _listRestoran.add(restoData);
 
-        if (isLastIndex) {
-          print('listResto : ');
-          print(_listRestoran);
-          setState(() {
-            isLoaded = true;
-          });
-        }
-      }
-    });
-    print('finish get resto data');
-  }
+  //       // if (isLastIndex) {
+  //       //   print('listResto : ');
+  //       //   print(_listRestoran);
+  //       //   setState(() {
+  //       //     isLoaded = true;
+  //       //   });
+  //       // }
+  //     }
+  //   });
+  // }
 
   // GET REKOMENDASI DATA
   void _getRekomendasiData() {
+    _listRestoranRekomendasi = [];
     setState(() {
       isLoaded = false;
     });
@@ -63,19 +65,37 @@ class _HomePageState extends State<HomePage> {
     print('hari: ${_inputHari}');
     APIService.getRekomendasi(_inputBudget, _inputHari).then((rekomendasiData) {
       print("rekomendasi data : ");
-      print(rekomendasiData);
+      print(rekomendasiData!.rekomendasiMakanan);
       if (rekomendasiData != null) {
         _rekomendasi = rekomendasiData;
         if (rekomendasiData.rekomendasiMakanan.isNotEmpty) {
-          for (int i = 0; i < rekomendasiData.rekomendasiMakanan.length; i++) {
-            if (i == rekomendasiData.rekomendasiMakanan.length - 1) {
-              _getRestoranData(rekomendasiData.rekomendasiMakanan[i].restoran,
-                  isLastIndex: true);
-            } else {
-              _getRestoranData(rekomendasiData.rekomendasiMakanan[i].restoran,
-                  isLastIndex: false);
+          // for (int i = 0; i < rekomendasiData.rekomendasiMakanan.length;) {
+          //   print('rekomendasi makanan:');
+          //   print(rekomendasiData.rekomendasiMakanan[i].restoran);
+          //   if (i == rekomendasiData.rekomendasiMakanan.length - 1) {
+          //     _getRestoranData(rekomendasiData.rekomendasiMakanan[i].restoran,
+          //             isLastIndex: true)
+          //         .then((value) => i++);
+          //   } else {
+          //     _getRestoranData(rekomendasiData.rekomendasiMakanan[i].restoran,
+          //             isLastIndex: false)
+          //         .then((value) => i++);
+          //   }
+          // }
+          APIService.getListRestoran().then((listResto) {
+            if (listResto != null) {
+              _listRestoranTersedia = listResto;
+              // tambahkan ke list restoran yang direkomendasikan
+              rekomendasiData.rekomendasiMakanan.forEach((rekomenMakanan) {
+                var resto = _listRestoranTersedia!.firstWhere((restoTersedia) =>
+                    restoTersedia.id == rekomenMakanan.restoran);
+                _listRestoranRekomendasi.add(resto);
+              });
+              setState(() {
+                isLoaded = true;
+              });
             }
-          }
+          });
         } else {
           setState(() {
             isLoaded = true;
@@ -235,7 +255,7 @@ class _HomePageState extends State<HomePage> {
                       budget: _inputBudget,
                       hari: _inputHari,
                       rekomendasi: _rekomendasi,
-                      listRestoran: _listRestoran,
+                      listRestoran: _listRestoranRekomendasi,
                     )
           ],
         ),

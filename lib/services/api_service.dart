@@ -122,14 +122,12 @@ class APIService {
     }
   }
 
-  // GET RESTO BY ID
-  static Future<Restoran?> getRestoran(String id) async {
+  // GET RESTAURANTS
+  static Future<List<Restoran>?> getListRestoran() async {
     // DEFINE URL
-    print("get restoran by id request: ");
-    print('restoran id : ${id}');
+    print("get all restoran request: ");
     // print(model.toJson());
-    String query = Config.restoranAPI + id;
-    var url = Uri.https(Config.apiURL, query);
+    var url = Uri.https(Config.apiURL, Config.restoranAPI);
     print("uri url :");
     print(url);
 
@@ -142,10 +140,34 @@ class APIService {
     );
     if (response.statusCode == 200) {
       var json = response.data;
-      print('response data : ${json}');
       return restoranFromJson(json);
     }
   }
+
+  // GET RESTO BY ID
+  // static Future<Restoran?> getRestoran(String id) async {
+  //   // DEFINE URL
+  //   print("get restoran by id request: ");
+  //   print('restoran id : ${id}');
+  //   // print(model.toJson());
+  //   String query = Config.restoranAPI + id;
+  //   var url = Uri.https(Config.apiURL, query);
+  //   print("uri url :");
+  //   print(url);
+
+  //   // get request
+  //   Response response;
+  //   var dio = Dio();
+  //   response = await dio.get(
+  //     url.toString(),
+  //     options: Options(responseType: ResponseType.plain),
+  //   );
+  //   if (response.statusCode == 200) {
+  //     var json = response.data;
+  //     print('response data : ${json}');
+  //     return restoranFromJson(json);
+  //   }
+  // }
 
   // GET USER BY ID
   static Future<Mahasiswa?> getUser() async {

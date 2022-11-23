@@ -7,6 +7,12 @@ class FoodDescPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final String foodName = args['nama'];
+    final int harga = args['harga'];
+    final String lokasi = args['lokasi'];
+    final String deskripsi = args['deskripsi'];
+    final String imageURL = args['imageURL'];
+    final int jarak = args['jarak'];
     print(args);
 
     return Scaffold(
@@ -46,7 +52,7 @@ class FoodDescPage extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            args['nama'],
+                            foodName,
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           )
@@ -60,7 +66,7 @@ class FoodDescPage extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  args['imageURL'],
+                  imageURL,
                   fit: BoxFit.fill,
                   loadingBuilder: (BuildContext context, Widget child,
                       ImageChunkEvent? loadingProgress) {
@@ -97,7 +103,7 @@ class FoodDescPage extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            'Rp${args['harga']}',
+                            'Rp${harga}',
                             style: TextStyle(fontSize: 14),
                           )
                         ],
@@ -115,7 +121,7 @@ class FoodDescPage extends StatelessWidget {
                           ),
                           Container(
                             child: Text(
-                              args['lokasi'],
+                              lokasi,
                               style: TextStyle(fontSize: 14),
                               // overflow: TextOverflow.visible,
                             ),
@@ -152,7 +158,7 @@ class FoodDescPage extends StatelessWidget {
                           ),
                           SizedBox(height: 20),
                           Text(
-                            args['deskripsi'],
+                            deskripsi,
                             style: TextStyle(
                                 height: 1.5,
                                 color: Theme.of(context).primaryColor),
@@ -162,7 +168,7 @@ class FoodDescPage extends StatelessWidget {
                     ),
                     Container(
                       child: Center(
-                        child: Text('300 m'),
+                        child: Text('${jarak} m'),
                       ),
                       width: double.infinity,
                       height: 40,

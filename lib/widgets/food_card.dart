@@ -10,12 +10,14 @@ class FoodCard extends StatelessWidget {
     required this.foodPrice,
     required this.loc,
     required this.deskripsi,
+    required this.jarak,
   }) : super(key: key);
   final String foodId;
   final String foodName;
   final int foodPrice;
   final String loc;
   final String deskripsi;
+  final int jarak;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,8 @@ class FoodCard extends StatelessWidget {
                   'harga': foodPrice,
                   'lokasi': loc,
                   'deskripsi': deskripsi,
-                  'imageURL': imageURL
+                  'imageURL': imageURL,
+                  'jarak': jarak
                 },
               );
             },
@@ -75,7 +78,8 @@ class FoodCard extends StatelessWidget {
                   'harga': foodPrice,
                   'lokasi': loc,
                   'deskripsi': deskripsi,
-                  'imageURL': imageURL
+                  'imageURL': imageURL,
+                  'jarak': jarak
                 },
               );
             },
@@ -126,7 +130,9 @@ class FoodCard extends StatelessWidget {
                             child: Row(
                               children: [
                                 Expanded(
+                                  flex: 3,
                                   child: Container(
+                                    // color: Colors.red,
                                     child: Row(
                                       children: [
                                         Icon(Icons.discount),
@@ -143,7 +149,9 @@ class FoodCard extends StatelessWidget {
                                 ),
                                 // SizedBox(width: 15),
                                 Expanded(
+                                  flex: 4,
                                   child: Container(
+                                    // color: Colors.green,
                                     child: Row(
                                       children: [
                                         Icon(Icons.location_on_outlined),
@@ -183,7 +191,7 @@ class FoodCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            '300',
+                            '${jarak}',
                             style: TextStyle(fontSize: 16, color: Colors.white),
                           ),
                           Text(
