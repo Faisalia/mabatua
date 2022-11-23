@@ -12,6 +12,7 @@ class EditTitle extends StatelessWidget {
     required this.editPage,
     required this.user,
     this.validateOldPassword,
+    this.validateNewPassword,
     this.newPassword,
     this.confirmNewPassword,
   }) : super(key: key);
@@ -19,6 +20,7 @@ class EditTitle extends StatelessWidget {
   final EditPage editPage;
   final Mahasiswa user;
   final Function? validateOldPassword;
+  final Function? validateNewPassword;
   final String? newPassword;
   final String? confirmNewPassword;
 
@@ -83,6 +85,16 @@ class EditTitle extends StatelessWidget {
                   }
                   return;
                 }
+                // JIKA BERADA DI NEW PASSWORD PAGE
+                if (editPage == EditPage.newPassword) {
+                  if (validateNewPassword != null) {
+                    if (!validateNewPassword!()) {
+                      return;
+                    } else {
+                      Navigator.of(context).pop('Update password berhasil');
+                    }
+                  }
+                }
                 print('new pass: ${newPassword}');
                 print('confirm pass: ${confirmNewPassword}');
                 Map<String, dynamic> userUpdateRequest = {
@@ -110,8 +122,6 @@ class EditTitle extends StatelessWidget {
                       Navigator.of(context).pop('Update nama berhasil');
                     } else if (editPage == EditPage.username) {
                       Navigator.of(context).pop('Update username berhasil');
-                    } else if (editPage == EditPage.newPassword) {
-                      Navigator.of(context).pop('Update password berhasil');
                     }
                   }
                 });

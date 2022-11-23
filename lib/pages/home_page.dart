@@ -135,6 +135,7 @@ class _HomePageState extends State<HomePage> {
                             Container(
                               height: 75,
                               child: TextFormField(
+                                keyboardType: TextInputType.number,
                                 onSaved: (newValue) => {
                                   _inputBudget = newValue!,
                                 },
@@ -167,6 +168,7 @@ class _HomePageState extends State<HomePage> {
                             Container(
                               height: 75,
                               child: TextFormField(
+                                keyboardType: TextInputType.number,
                                 onSaved: (newValue) => {
                                   _inputHari = newValue!,
                                 },

@@ -14,6 +14,7 @@ class EditNewPasswordPage extends StatefulWidget {
 class _EditNewPasswordPageState extends State<EditNewPasswordPage> {
   TextEditingController _newPasswordController = TextEditingController();
   TextEditingController _confirmNewPasswordController = TextEditingController();
+  GlobalKey<FormState> _globalFormKey = GlobalKey<FormState>();
   bool _obscureText = true;
   bool _obscureTextConfirm = true;
   Mahasiswa? _user;
@@ -62,6 +63,27 @@ class _EditNewPasswordPageState extends State<EditNewPasswordPage> {
     super.dispose();
   }
 
+  String? _onValidate(String value) {
+    print('value: ${value}');
+    if (value.isEmpty) {
+      return 'Password harus diisi';
+    } else if (_newPassword != _confirmNewPassword) {
+      return 'Konfirmasi password tidak sesuai';
+    }
+  }
+
+  bool? validateAndSave() {
+    var form = _globalFormKey.currentState;
+    bool isValid = form!.validate();
+    if (isValid) {
+      debugPrint('valid in validateAndSave old pass');
+      // form.save();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     print('build...');
@@ -79,6 +101,7 @@ class _EditNewPasswordPageState extends State<EditNewPasswordPage> {
               user: _user!,
               newPassword: _newPassword,
               confirmNewPassword: _confirmNewPassword,
+              validateNewPassword: validateAndSave,
             ),
             Container(
               padding: EdgeInsets.only(top: 20, left: 15, right: 15),
@@ -90,6 +113,7 @@ class _EditNewPasswordPageState extends State<EditNewPasswordPage> {
                 ),
               ),
               child: Form(
+                key: _globalFormKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -101,7 +125,7 @@ class _EditNewPasswordPageState extends State<EditNewPasswordPage> {
                       height: 10,
                     ),
                     Container(
-                      height: 40,
+                      // height: 40,
                       child: TextFormField(
                         controller: _newPasswordController,
                         obscureText: _obscureText,
@@ -151,8 +175,9 @@ class _EditNewPasswordPageState extends State<EditNewPasswordPage> {
                       height: 10,
                     ),
                     Container(
-                      height: 40,
+                      // height: 40,
                       child: TextFormField(
+                        validator: (value) => _onValidate(value!),
                         controller: _confirmNewPasswordController,
                         obscureText: _obscureTextConfirm,
                         decoration: InputDecoration(
@@ -183,6 +208,14 @@ class _EditNewPasswordPageState extends State<EditNewPasswordPage> {
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Theme.of(context).primaryColor),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red, width: 2),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red, width: 2),
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
