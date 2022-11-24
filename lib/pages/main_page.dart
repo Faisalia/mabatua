@@ -6,8 +6,9 @@ import '../services/api_service.dart';
 import '../models/mahasiswa.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  MainPage({Key? key, required this.isFromSettingPage}) : super(key: key);
   static const routeName = '/main';
+  bool isFromSettingPage;
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -17,14 +18,22 @@ class _MainPageState extends State<MainPage> {
   Mahasiswa? _user;
   int _currentIndex = 0;
   bool _isDataLoaded = false;
+  bool _isInitState = false;
   // List _pages = [
   //   HomePage(u),
   //   ProfilePage(),
   // ];
 
+  void setProfileIndex() {
+    _currentIndex = 1;
+    print('setProfileIndex');
+  }
+
   @override
   void initState() {
     super.initState();
+    // _isInitState = true;
+    _currentIndex = widget.isFromSettingPage ? 1 : 0;
     APIService.getUser().then((user) {
       if (user != null) {
         print('getUser in mainpage');
@@ -32,6 +41,7 @@ class _MainPageState extends State<MainPage> {
         _user = user;
         setState(() {
           _isDataLoaded = true;
+          // _isInitState = false;
         });
       }
     });
@@ -39,14 +49,17 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('build');
+    print('build111');
     // final String args = ModalRoute.of(context)!.settings.arguments as String;
     // print("args : " + args);
     // debugPrint('${_currentIndex}');
+    // var args = ModalRoute.of(context)?.settings.arguments
+    //     as dynamic; // arguments from setting page for profile index
+    // print('args: : ${args}');
+    // _currentIndex =
+    //     args != null ? args['tabIndex'] : (_isInitState ? 0 : _currentIndex);
+    print('currentIndex ::: ${_currentIndex}');
 
-    // var args = ModalRoute.of(context)!.settings.arguments
-    //     as Map<String, int>; // arguments from setting page for profile index
-    // _currentIndex = args['tabIndex']!;
     return Scaffold(
       extendBody: true,
       body: !_isDataLoaded
@@ -59,6 +72,7 @@ class _MainPageState extends State<MainPage> {
                 )
               : ProfilePage(
                   user: _user!,
+                  onProfileIndex: setProfileIndex,
                 ),
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(
@@ -70,6 +84,7 @@ class _MainPageState extends State<MainPage> {
           child: BottomNavigationBar(
             currentIndex: _currentIndex,
             onTap: (index) {
+              widget.isFromSettingPage = false;
               setState(() {
                 _currentIndex = index;
               });

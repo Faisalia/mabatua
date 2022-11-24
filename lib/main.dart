@@ -19,7 +19,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   bool _result = await SharedService.isLoggedIn();
   if (_result) {
-    _defaultPage = const MainPage();
+    _defaultPage = MainPage(
+      isFromSettingPage: false,
+    );
   }
   runApp(const MyApp());
 }
@@ -54,7 +56,9 @@ class MyApp extends StatelessWidget {
         '/': (context) => _defaultPage,
         LoginPage.routeName: ((context) => LoginPage()),
         RegisterPage.routeName: (context) => RegisterPage(),
-        MainPage.routeName: (context) => const MainPage(),
+        MainPage.routeName: (context) => MainPage(
+              isFromSettingPage: false,
+            ),
         SettingPage.routeName: (context) => const SettingPage(),
         EditNamePage.routeName: (context) => const EditNamePage(),
         EditAddressPage.routeName: (context) => const EditAddressPage(),

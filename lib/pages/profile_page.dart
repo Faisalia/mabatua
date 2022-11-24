@@ -5,9 +5,12 @@ import '../services/shared_service.dart';
 import '../models/mahasiswa.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key, required this.user}) : super(key: key);
+  const ProfilePage(
+      {Key? key, required this.user, required this.onProfileIndex})
+      : super(key: key);
 
   final Mahasiswa user;
+  final Function onProfileIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +76,7 @@ class ProfilePage extends StatelessWidget {
                         title: Text('Pengaturan'),
                         onTap: () {
                           Navigator.of(context).pushNamed(SettingPage.routeName,
-                              arguments: user);
+                              arguments: [user, onProfileIndex]);
                         },
                       ),
                       SizedBox(height: 20),

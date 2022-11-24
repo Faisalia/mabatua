@@ -12,7 +12,11 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Mahasiswa user = ModalRoute.of(context)?.settings.arguments as Mahasiswa;
+    List<dynamic> args =
+        ModalRoute.of(context)?.settings.arguments as List<dynamic>;
+    Mahasiswa user = args[0];
+    Function onProfileIndex = args[1];
+
     double deviceWidth = MediaQuery.of(context).size.width;
     return WillPopScope(
       onWillPop: () {
@@ -35,11 +39,15 @@ class SettingPage extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                              MainPage.routeName, (route) => false,
-                              arguments: {
-                                'tabIndex': 1,
-                              });
+                          onProfileIndex();
+                          Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute<dynamic>(
+                              builder: (BuildContext context) => MainPage(
+                                isFromSettingPage: true,
+                              ),
+                            ),
+                            (route) => false,
+                          );
                         },
                         child: Image.asset(
                           'assets/images/back_icon.png',
