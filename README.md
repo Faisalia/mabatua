@@ -87,6 +87,8 @@ Adapun batasan yang akan diberlakukan pada pengembangan proyek kali ini adalah :
    <img src="https://github.com/Faisalia/mabatua/blob/main/System%20Analyst/Class%20Diagram%20-%20Save%20Kost.png?raw=true">
    
 ## Prototype
+Dapat dilihat pada link berikut
+<a>https://www.figma.com/proto/o0rv4COFL3Mg1k44Tf7Tmi/SaveKost?node-id=49%3A425&scaling=min-zoom&page-id=9%3A85&starting-point-node-id=12%3A19</a>
 
 ## Hasil Implementasi
 
