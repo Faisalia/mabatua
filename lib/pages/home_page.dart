@@ -21,8 +21,8 @@ class _HomePageState extends State<HomePage> {
   String _inputHari = '';
   bool isLoaded = false;
   Rekomendasi? _rekomendasi;
-  List<Restoran>? _listRestoranTersedia;
-  List<Restoran> _listRestoranRekomendasi = [];
+  // List<Restoran>? _listRestoranTersedia;
+  // List<Restoran> _listRestoranRekomendasi = [];
 
   void _displayResult() {
     FocusScope.of(context).unfocus();
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
 
   // GET REKOMENDASI DATA
   void _getRekomendasiData() {
-    _listRestoranRekomendasi = [];
+    // _listRestoranRekomendasi = [];
     setState(() {
       isLoaded = false;
     });
@@ -68,39 +68,42 @@ class _HomePageState extends State<HomePage> {
       print(rekomendasiData!.rekomendasiMakanan);
       if (rekomendasiData != null) {
         _rekomendasi = rekomendasiData;
-        if (rekomendasiData.rekomendasiMakanan.isNotEmpty) {
-          // for (int i = 0; i < rekomendasiData.rekomendasiMakanan.length;) {
-          //   print('rekomendasi makanan:');
-          //   print(rekomendasiData.rekomendasiMakanan[i].restoran);
-          //   if (i == rekomendasiData.rekomendasiMakanan.length - 1) {
-          //     _getRestoranData(rekomendasiData.rekomendasiMakanan[i].restoran,
-          //             isLastIndex: true)
-          //         .then((value) => i++);
-          //   } else {
-          //     _getRestoranData(rekomendasiData.rekomendasiMakanan[i].restoran,
-          //             isLastIndex: false)
-          //         .then((value) => i++);
-          //   }
-          // }
-          APIService.getListRestoran().then((listResto) {
-            if (listResto != null) {
-              _listRestoranTersedia = listResto;
-              // tambahkan ke list restoran yang direkomendasikan
-              rekomendasiData.rekomendasiMakanan.forEach((rekomenMakanan) {
-                var resto = _listRestoranTersedia!.firstWhere((restoTersedia) =>
-                    restoTersedia.id == rekomenMakanan.restoran);
-                _listRestoranRekomendasi.add(resto);
-              });
-              setState(() {
-                isLoaded = true;
-              });
-            }
-          });
-        } else {
-          setState(() {
-            isLoaded = true;
-          });
-        }
+        setState(() {
+          isLoaded = true;
+        });
+        // if (rekomendasiData.rekomendasiMakanan.isNotEmpty) {
+        // for (int i = 0; i < rekomendasiData.rekomendasiMakanan.length;) {
+        //   print('rekomendasi makanan:');
+        //   print(rekomendasiData.rekomendasiMakanan[i].restoran);
+        //   if (i == rekomendasiData.rekomendasiMakanan.length - 1) {
+        //     _getRestoranData(rekomendasiData.rekomendasiMakanan[i].restoran,
+        //             isLastIndex: true)
+        //         .then((value) => i++);
+        //   } else {
+        //     _getRestoranData(rekomendasiData.rekomendasiMakanan[i].restoran,
+        //             isLastIndex: false)
+        //         .then((value) => i++);
+        //   }
+        // }
+        // APIService.getListRestoran().then((listResto) {
+        //   if (listResto != null) {
+        //     _listRestoranTersedia = listResto;
+        //     // tambahkan ke list restoran yang direkomendasikan
+        //     rekomendasiData.rekomendasiMakanan.forEach((rekomenMakanan) {
+        //       var resto = _listRestoranTersedia!.firstWhere((restoTersedia) =>
+        //           restoTersedia.id == rekomenMakanan.restoran);
+        //       _listRestoranRekomendasi.add(resto);
+        //     });
+        //     setState(() {
+        //       isLoaded = true;
+        //     });
+        //   }
+        // });
+        // } else {
+        //   setState(() {
+        //     isLoaded = true;
+        //   });
+        // }
       }
     });
   }
@@ -255,7 +258,6 @@ class _HomePageState extends State<HomePage> {
                       budget: _inputBudget,
                       hari: _inputHari,
                       rekomendasi: _rekomendasi,
-                      listRestoran: _listRestoranRekomendasi,
                     )
           ],
         ),

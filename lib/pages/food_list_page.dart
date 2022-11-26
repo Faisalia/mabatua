@@ -24,7 +24,7 @@ class _FoodListPageState extends State<FoodListPage> {
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final List<RekomendasiMakanan> _rekomendasiMakanan =
         _args['rekomendasiMakanan'];
-    final List<Restoran> _listRestoran = _args['listRestoran'];
+    // final List<Restoran> _listRestoran = _args['listRestoran'];
     final int _rekomendasiPengeluaran = _args['rekomendasiPengeluaran'];
 
     var padding = MediaQuery.of(context).padding;
@@ -81,11 +81,11 @@ class _FoodListPageState extends State<FoodListPage> {
                         itemCount: _rekomendasiMakanan.length,
                         itemBuilder: (BuildContext context, int index) {
                           return FoodCard(
-                            jarak: _listRestoran[index].jarak,
+                            jarak: _rekomendasiMakanan[index].restoran.jarak,
                             foodId: _rekomendasiMakanan[index].id,
                             foodName: _rekomendasiMakanan[index].nama,
                             foodPrice: _rekomendasiMakanan[index].harga,
-                            loc: _listRestoran[index].nama,
+                            loc: _rekomendasiMakanan[index].restoran.nama,
                             deskripsi: _rekomendasiMakanan[index].deskripsi,
                           );
                         },

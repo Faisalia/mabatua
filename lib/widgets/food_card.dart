@@ -191,11 +191,11 @@ class FoodCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            '${jarak}',
+                            jarak - 1000 >= 0 ? '${jarak / 1000}' : '${jarak}',
                             style: TextStyle(fontSize: 16, color: Colors.white),
                           ),
                           Text(
-                            'm',
+                            jarak - 1000 >= 0 ? 'km' : 'm',
                             style: TextStyle(fontSize: 16, color: Colors.white),
                           )
                         ],

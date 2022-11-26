@@ -6,17 +6,16 @@ import '../services/api_service.dart';
 import '../models/restoran.dart';
 
 class Result extends StatelessWidget {
-  const Result(
-      {Key? key,
-      required this.budget,
-      required this.hari,
-      this.rekomendasi,
-      required this.listRestoran})
-      : super(key: key);
+  const Result({
+    Key? key,
+    required this.budget,
+    required this.hari,
+    this.rekomendasi,
+  }) : super(key: key);
   final String budget;
   final String hari;
   final Rekomendasi? rekomendasi;
-  final List<Restoran> listRestoran;
+  // final List<Restoran> listRestoran;
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +58,11 @@ class Result extends StatelessWidget {
                 : rekomendasi?.rekomendasiMakanan.length,
             itemBuilder: (BuildContext context, int index) {
               return FoodCard(
-                jarak: listRestoran[index].jarak,
+                jarak: rekomendasi!.rekomendasiMakanan[index].restoran.jarak,
                 foodId: rekomendasi!.rekomendasiMakanan[index].id,
                 foodName: rekomendasi!.rekomendasiMakanan[index].nama,
                 foodPrice: rekomendasi!.rekomendasiMakanan[index].harga,
-                loc: listRestoran[index].nama,
+                loc: rekomendasi!.rekomendasiMakanan[index].restoran.nama,
                 deskripsi: rekomendasi!.rekomendasiMakanan[index].deskripsi,
               );
             },
@@ -87,7 +86,7 @@ class Result extends StatelessWidget {
                       'rekomendasiPengeluaran':
                           rekomendasi?.rekomendasiPengeluaranPerMakanan,
                       'rekomendasiMakanan': rekomendasi?.rekomendasiMakanan,
-                      'listRestoran': listRestoran
+                      // 'listRestoran': listRestoran
                     },
                   );
                 },

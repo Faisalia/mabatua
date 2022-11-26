@@ -3,6 +3,7 @@
 //     final rekomendasi = rekomendasiFromJson(jsonString);
 
 import 'dart:convert';
+import './restoran.dart';
 
 Rekomendasi rekomendasiFromJson(String str) =>
     Rekomendasi.fromJson(json.decode(str));
@@ -47,7 +48,7 @@ class RekomendasiMakanan {
   String nama;
   int harga;
   String deskripsi;
-  String restoran;
+  Restoran restoran;
   int? v;
 
   factory RekomendasiMakanan.fromJson(Map<String, dynamic> json) =>
@@ -56,7 +57,7 @@ class RekomendasiMakanan {
         nama: json["nama"],
         harga: json["harga"],
         deskripsi: json["deskripsi"],
-        restoran: json["restoran"],
+        restoran: Restoran.fromJson(json["restoran"]),
         v: json["__v"],
       );
 
@@ -65,7 +66,7 @@ class RekomendasiMakanan {
         "nama": nama,
         "harga": harga,
         "deskripsi": deskripsi,
-        "restoran": restoran,
+        "restoran": restoran.toJson(),
         "__v": v,
       };
 }

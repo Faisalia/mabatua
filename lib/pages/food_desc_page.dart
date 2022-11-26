@@ -168,7 +168,9 @@ class FoodDescPage extends StatelessWidget {
                     ),
                     Container(
                       child: Center(
-                        child: Text('${jarak} m'),
+                        child: jarak - 1000 >= 0
+                            ? Text('${jarak / 1000} km')
+                            : Text('${jarak} m'),
                       ),
                       width: double.infinity,
                       height: 40,
