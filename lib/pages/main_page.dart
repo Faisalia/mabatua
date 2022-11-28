@@ -80,7 +80,7 @@ class _MainPageState extends State<MainPage> {
           topRight: Radius.circular(20),
         ),
         child: SizedBox(
-          height: 50,
+          height: 60,
           child: BottomNavigationBar(
             currentIndex: _currentIndex,
             onTap: (index) {
@@ -97,7 +97,7 @@ class _MainPageState extends State<MainPage> {
             items: [
               BottomNavigationBarItem(
                   icon: Container(
-                    height: 49,
+                    height: 59,
                     width: 200,
                     decoration: BoxDecoration(
                       color: _currentIndex == 0
@@ -107,14 +107,14 @@ class _MainPageState extends State<MainPage> {
                     child: Icon(
                       Icons.home,
                       color: Colors.white,
-                      size: 35,
+                      size: 45,
                     ),
                   ),
                   backgroundColor: Theme.of(context).primaryColor,
                   label: 'Home'),
               BottomNavigationBarItem(
                   icon: Container(
-                    height: 49,
+                    height: 59,
                     width: 200,
                     decoration: BoxDecoration(
                       color: _currentIndex == 1
@@ -124,7 +124,7 @@ class _MainPageState extends State<MainPage> {
                     child: Icon(
                       Icons.person,
                       color: Colors.white,
-                      size: 35,
+                      size: 45,
                     ),
                   ),
                   label: 'profile'),

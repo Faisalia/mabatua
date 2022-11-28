@@ -20,8 +20,14 @@ class SettingPage extends StatelessWidget {
     double deviceWidth = MediaQuery.of(context).size.width;
     return WillPopScope(
       onWillPop: () {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil(MainPage.routeName, (route) => false);
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute<dynamic>(
+            builder: (BuildContext context) => MainPage(
+              isFromSettingPage: true,
+            ),
+          ),
+          (route) => false,
+        );
         return Future.value(false);
       },
       child: Scaffold(

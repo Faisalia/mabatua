@@ -116,6 +116,8 @@ class _HomePageState extends State<HomePage> {
     print('inputHari: ${_inputHari}');
 
     if (_inputBudget.isNotEmpty && _inputHari.isNotEmpty) {
+      _inputBudget = _inputBudget.replaceAll('.', "").replaceAll(',', '');
+      print("regExpres: ${_inputBudget}");
       _displayResult();
       _getRekomendasiData();
     } else {
