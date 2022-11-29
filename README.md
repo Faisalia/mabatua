@@ -89,7 +89,8 @@ Adapun batasan yang akan diberlakukan pada pengembangan proyek kali ini adalah :
 ## Prototype
 Dapat dilihat pada link berikut <a href="https://www.figma.com/proto/o0rv4COFL3Mg1k44Tf7Tmi/SaveKost?node-id=12%3A19&scaling=min-zoom&page-id=9%3A85&starting-point-node-id=12%3A19" target="_blank">Prototype SaveKost</a>
 
-## Hasil Implementasi
+## Link Video Demo
+Dapat dilihat pada link berikut <a href="https://drive.google.com/file/d/1e-v465rF0VzXwBoo65sx7CCz3lyRq6xT/view?usp=drivesdk" target="_blank">Video Demo Aplikasi Savekost</a>
 
 ## Link Aplikasi
 
