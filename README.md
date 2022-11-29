@@ -96,6 +96,39 @@ Dapat dilihat pada link berikut <a href="https://drive.google.com/file/d/1e-v465
 Dapat dilihat pada link berikut <a href="https://drive.google.com/file/d/1dCzf-q4iQ-97j8Y-sldPqGzBVMX6vA4d/view?usp=drivesdk" target="_blank">APK Savekost</a>
 
 ## Testing
-
+<table>
+    <tbody>
+        <tr>
+            <td>ID</td>
+            <td>TC01</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>Login gagal</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>Pengguna melakukan login ke dalam aplikasi</td>
+        </tr>
+        <tr>
+            <td>Precondictions</td>
+            <td>Pengguna sudah terdaftar dan poerangkat seluler terhubung internet</td>
+        </tr>
+        <tr>
+            <td>Steps</td>
+            <td> *Pengguna memasukkan username
+                 *Pengguna memasukkan password
+                 *Menekan tombol login</td>
+        </tr>
+        <tr>
+            <td>Expected Results</td>
+            <td>Pengguna berhasil login dan masuk ke halaman input dana dan rentang waktu</td>
+        </tr>
+        <tr>
+            <td>Results</td>
+            <td>Accepted</td>
+        </tr>
+    </tbody>
+</table>
 ## Documents
 
