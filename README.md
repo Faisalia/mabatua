@@ -116,9 +116,13 @@ Dapat dilihat pada link berikut <a href="https://drive.google.com/file/d/1dCzf-q
         </tr>
         <tr>
             <td>Steps</td>
-            <td> *Pengguna memasukkan username
-                 *Pengguna memasukkan password
-                 *Menekan tombol login</td>
+            <td> 
+              <ul>
+               <li>Pengguna memasukkan username</li>
+               <li>Pengguna memasukkan password</li>
+               <li>Menekan tombol login</li>
+              </ul>
+            </td>
         </tr>
         <tr>
             <td>Expected Results</td>
