@@ -93,6 +93,7 @@ Dapat dilihat pada link berikut <a href="https://www.figma.com/proto/o0rv4COFL3M
 Dapat dilihat pada link berikut <a href="https://drive.google.com/file/d/1e-v465rF0VzXwBoo65sx7CCz3lyRq6xT/view?usp=drivesdk" target="_blank">Video Demo Aplikasi Savekost</a>
 
 ## Link Aplikasi
+Dapat dilihat pada link berikut <a href="https://drive.google.com/file/d/1dCzf-q4iQ-97j8Y-sldPqGzBVMX6vA4d/view?usp=drivesdk" target="_blank">Video Demo Aplikasi Savekost</a>
 
 ## Testing
 
