@@ -135,5 +135,162 @@ Dapat dilihat pada link berikut <a href="https://drive.google.com/file/d/1dCzf-q
     </tbody>
 </table>
 
+### Login 2
+<table>
+    <tbody>
+        <tr>
+            <td>ID</td>
+            <td>TC02</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>Login gagal</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>Pengguna melakukan login ke dalam aplikasi dan salah memasukkan password atau username</td>
+        </tr>
+        <tr>
+            <td>Precondictions</td>
+            <td>Pengguna sudah terdaftar dan perangkat seluler terhubung internet</td>
+        </tr>
+        <tr>
+            <td>Steps</td>
+            <td> 
+              <ul>
+               <li>Pengguna memasukkan username yang sesuai</li>
+               <li>Pengguna memasukkan password yang tidak sesuai</li>
+               <li>Menekan tombol login</li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Expected Results</td>
+            <td>Pengguna kembali ke halaman login dengan peringatan password yang dimasukkan tidak sesuai</td>
+        </tr>
+        <tr>
+            <td>Results</td>
+            <td>Accepted</td>
+        </tr>
+    </tbody>
+</table>
+
+### Register
+<table>
+    <tbody>
+        <tr>
+            <td>ID</td>
+            <td>TC03</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>Register berhasil</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>Pengguna baru mendaftar ke dalam aplikasi</td>
+        </tr>
+        <tr>
+            <td>Precondictions</td>
+            <td>Pengguna seluler terhubung internet</td>
+        </tr>
+        <tr>
+            <td>Steps</td>
+            <td> 
+              <ul>
+               <li>Pengguna mengisi username, nama depan, nama belakang password dan konfirmasi password</li>
+               <li>Pengguna menekan tombol daftar</li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Expected Results</td>
+            <td>Pengguna berhasil terdaftar dan masuk ke laman login</td>
+        </tr>
+        <tr>
+            <td>Results</td>
+            <td>Accepted</td>
+        </tr>
+    </tbody>
+</table>
+
+
+### Register 2
+<table>
+    <tbody>
+        <tr>
+            <td>ID</td>
+            <td>TC04</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>Register gagal</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>Pengguna baru mendaftar ke dalam aplikasi namun terdapat kesalahan input pendaftaran</td>
+        </tr>
+        <tr>
+            <td>Precondictions</td>
+            <td>Pengguna sudah terdaftar dan perangkat seluler terhubung internet</td>
+        </tr>
+        <tr>
+            <td>Steps</td>
+            <td> 
+              <ul>
+               <li>Pengguna mengisi username, nama depan, nama belakang password dan konfirmasi password</li>
+               <li>Pengguna mengisi input konfirmasi password yang tidak sesuai</li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Expected Results</td>
+            <td>Pengguna gagal terdaftar dan kembali ke halaman registrasi dengan peringatan konfirmasi password yang dimasukkan tidak sesuai</td>
+        </tr>
+        <tr>
+            <td>Results</td>
+            <td>Accepted</td>
+        </tr>
+    </tbody>
+</table>
+
+### Rekomendasi
+<table>
+    <tbody>
+        <tr>
+            <td>ID</td>
+            <td>TC05</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>Rekomendasi berhasil</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>Pengguna melakukan input dana dan rentang waktu untuk mendapatkan dana anjuran dan list rekomendasi</td>
+        </tr>
+        <tr>
+            <td>Precondictions</td>
+            <td>Pengguna sudah login</td>
+        </tr>
+        <tr>
+            <td>Steps</td>
+            <td> 
+              <ul>
+               <li>Pengguna memasukan dana yang dimiliki dan rentang waktu penggunaan dana</li>
+               <li>Pengguna menekan tombol di sebelah tempat input</li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Expected Results</td>
+            <td>Pengguna ditampilkan dana anjuran dan list rekomendasi makanan</td>
+        </tr>
+        <tr>
+            <td>Results</td>
+            <td>Accepted</td>
+        </tr>
+    </tbody>
+</table>
 ## Documents
 
