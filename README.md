@@ -56,12 +56,25 @@ Kehidupan sehari-hari tidak terlepas dari adanya pengeluaran untuk mencukupi keb
 ## Tujuan
 Pengembangan ini dilakukan dengan tujuan untuk memberikan rekomendasi pengeluaran makanan yang digunakan user berdasarkan dana yang dimiliki, hal ini memungkinkan agar dana bisa dipakai sesuai dengan porsinya.
 
+## User Story
+* Sebagai mahasiswa IPB yang kurang ahli dalam mengatur keuangan, Putra ingin mendapatkan rekomendasi pengeluaran terutama makanan sehingga Putra bisa mengatur keuangannya.
+* Sebagai mahasiswa IPB yang tidak tahu harus membeli makanan apa yang sesuai dengan dana yang dimiliki, Putra ingin mendapatkan rekomendasi makanan sehingga Putra bisa menggunakan uang untuk makanan secara lebih baik.
+
 ## Ruang Lingkup
 Adapun batasan yang akan diberlakukan pada pengembangan proyek kali ini adalah :
 * Projek ini akan mencakup pemberian rekomendasi pengeluaran makanan per hari
 * Rekomendasi outlet-outlet makanan akan menjadi bagian dari proyek
 * Tidak terdapat fitur pembayaran ataupun pemesanan makanan
 * Fitur penyimpanan saldo tidak akan dikembangkan
+
+## Lingkungan Pengembangan
+* CPU : AMD Ryzen 4900U
+* GPU : Nvidia Geforce RTX 2060
+* RAM : 16 GB
+* Stack : Node JS & Flutter
+
+## Metodologi
+Metodologi  yang akan digunakan dalam pengembangan proyek adalah waterfall. Metodologi waterfall merupakan metode yang menggunakan pendekatan yang sistematis dan berurutan. Pada penerapannya beberapa bagian dari proyek dikerjakan secara paralel, seperti pada bagian pembuatan API dan tampilan.
 
 ## Research Plan
    ### Empathy Map
@@ -293,5 +306,6 @@ Dapat dilihat pada link berikut <a href="https://drive.google.com/file/d/1dCzf-q
         </tr>
     </tbody>
 </table>
+
 ## Documents
 
